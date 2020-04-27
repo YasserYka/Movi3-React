@@ -8,10 +8,9 @@ class Movies extends Component {
     render () {
         return (
             <Consumer>
-                {value => {
-                    
+                {value => {   
                         const { movie_list, heading } = value;
-                        
+                        console.log(movie_list)
                         if(movie_list === undefined || movie_list.length === 0)
                             return <Spinner />
                         else{
@@ -20,8 +19,8 @@ class Movies extends Component {
                                     <h3 className="text-dark text-center mb-4">{heading}</h3>
                                     <div className="row">
                                         {
-                                            movie_list.map(element => (
-                                                    <Movie key={element.id} movie={element} />
+                                            movie_list.map((element, index) => (
+                                                    <Movie key={index} movie={element} />
                                                 )
                                             )
                                         }
