@@ -9,6 +9,14 @@ export class Provider extends Component {
         heading: 'Movies Being Watched Right Now'
     }
 
+    componentDidMount() {
+        fetch('http://localhost:8080/api/v1/movies')
+            .then(resault => resault.json())
+            .then(result => {
+                console.log(result);
+            });
+    }
+
     render() {
         return (
             <Context.Provider value={this.state}>
