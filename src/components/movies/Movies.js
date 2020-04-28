@@ -16,7 +16,9 @@ class Movies extends Component {
                         else{
                             return (
                                 <React.Fragment>
-                                    <h3 className="text-dark text-center mb-4">{heading}</h3>
+                                    <div>
+                                        <h3 className="text-dark text-center mb-4">{heading}&nbsp;<i class="fas fa-fire"></i></h3>
+                                    </div>
                                     <div className="row">
                                         {
                                             movie_list.map((element, index) => (

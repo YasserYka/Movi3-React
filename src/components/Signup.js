@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Login extends Component {
+class Signup extends Component {
 
     submit = () => {
 
@@ -13,18 +13,15 @@ class Login extends Component {
                     <input class="form-control" placeholder="Enter Your Username" />
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Enter Your Password" />
+                    <input type="email" class="form-control" placeholder="Enter Your Email" />
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Enter Your Password" />
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Enter Your Password" />
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Signup</button>
             </form>
         )
     }
 }
 
-export default Login;
+export default Signup;
