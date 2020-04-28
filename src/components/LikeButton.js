@@ -10,7 +10,7 @@ class LikeButton extends Component {
     render () {
         return (  
             <React.Fragment>
-                <button className="btn btn-secondary btn-lg active" onClick={this.submit}>
+                <button className="btn btn-danger btn-lg active" onClick={this.submit}>
                     <i className="fas fa-heart"></i>
                 </button>
             </React.Fragment>  
