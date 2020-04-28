@@ -2,7 +2,7 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand navbar-dark bg-dark mb-5 justify-content-center fixed-top custom-navbar">
+        <nav className="navbar navbar-expand navbar-dark mb-5 justify-content-center fixed-top custom-navbar">
             <div className="w-100">
                 <div className="row">
                     <div className="col-6 nav-col">
@@ -10,9 +10,9 @@ const Navbar = () => {
                         <ul className="navbar-nav w-100">
                             <li className="nav-item">
                                 {/*Img with pseudoelement*/}
-                                <a className="navbar-brand" href="#"><img src="https://seeklogo.com/images/M/movie-time-cinema-logo-8B5BE91828-seeklogo.com.png" width="60" height="50" /></a>
+                                <a className="navbar-brand" href="#"><img src="https://i.postimg.cc/jSp1Dy2Y/pngfuel-com.png" width="60" height="55" /></a>
                             </li>
-                            <form className="form-inline w-50">
+                            <form className="form-inline w-50 d-none d-sm-flex">
                                 <input className="form-control shadow-none w-100" placeholder="Search a movie..." aria-label="Search" />
                             </form>
                         </ul>
@@ -22,10 +22,10 @@ const Navbar = () => {
                         <ul className="navbar-nav ml-auto contact-about">
                             <div class=" d-none d-sm-flex align-items-center">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">CONTACT</a>
+                                    <a className="nav-link" href="#">Contact</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">ABOUT</a>
+                                    <a className="nav-link" href="#">About</a>
                                 </li>
                             </div>
                             <li className="nav-item dropdown">
