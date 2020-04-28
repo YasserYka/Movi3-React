@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {ListOfMovies} from './util/Fakedata'
 const Context = React.createContext();
 
 export class Provider extends Component {
@@ -10,11 +9,13 @@ export class Provider extends Component {
     }
 
     componentDidMount() {
+        
         fetch('http://localhost:8080/api/v1/movies')
-            .then(resault => resault.json())
-            .then(result => {
-                console.log(result);
-            });
+            .then(response => response.json())
+                .then(movies => {
+                    this.setState({ movie_list: movies })
+                });
+
     }
 
     render() {
