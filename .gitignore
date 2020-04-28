@@ -21,3 +21,5 @@ node_modules
 
 # VSCode history 
 .history
+
+*.map
