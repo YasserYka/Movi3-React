@@ -36,12 +36,13 @@ body {
 }
 
 .main-container .custom-navbar form {
+  width: 100%;
   /*Search input*/
   /*Search button*/
 }
 
 .main-container .custom-navbar form input {
-  min-width: 245px;
+  min-width: 200px;
   color: white;
   letter-spacing: 3px;
   border: none;
@@ -84,8 +85,8 @@ body {
 }
 
 .main-container .toggled-nav-options {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(15%, #434343), to(#000000));
-  background: linear-gradient(#434343 15%, #000000);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(15%, #000000), to(#434343));
+  background: linear-gradient(#000000 15%, #434343);
 }
 
 .main-container .toggled-nav-options a {
