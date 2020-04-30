@@ -4,8 +4,8 @@ const Context = React.createContext();
 export class Provider extends Component {
 
     state = {
-        movie_list: [],
-        heading: 'Movies Being Watched Right Now'
+        movie_list: ListOfMovies,
+        heading: ["Recommended for you", "Trending", "What are your friends watching?"]
     }
 
     componentDidMount() {

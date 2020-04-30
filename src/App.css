@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -15,6 +15,7 @@ html {
 body {
   height: 100%;
   width: 100%;
+  background-color: black;
 }
 
 /*Main container, holds all the elements*/
@@ -24,24 +25,25 @@ body {
   height: 100%;
   /*Container of the whole navbar*/
   /*The panel which is toggled when the user image is clicked*/
+  /*Starts the movie-rows part*/
 }
 
 .main-container .custom-navbar {
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Open Sans Condensed', sans-serif;
   -webkit-box-shadow: 0 0 20px 5px;
           box-shadow: 0 0 20px 5px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #434343), to(#000000));
-  background: linear-gradient(#434343 10%, #000000);
+  background-color: black;
   /*Contains the subgroups of the navbar, left and right*/
 }
 
 .main-container .custom-navbar form {
+  width: 100%;
   /*Search input*/
   /*Search button*/
 }
 
 .main-container .custom-navbar form input {
-  min-width: 245px;
+  min-width: 200px;
   color: white;
   letter-spacing: 3px;
   border: none;
@@ -74,18 +76,17 @@ body {
 }
 
 .main-container .custom-navbar .nav-col .dropdown-item {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   letter-spacing: 3px;
 }
 
 .main-container .custom-navbar .nav-col .nav-link {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   letter-spacing: 3px;
 }
 
 .main-container .toggled-nav-options {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(15%, #434343), to(#000000));
-  background: linear-gradient(#434343 15%, #000000);
+  background-color: black;
 }
 
 .main-container .toggled-nav-options a {
@@ -93,6 +94,13 @@ body {
 }
 
 .main-container .toggled-nav-options a:hover {
-  background-color: black;
+  background: none;
+  color: red;
+}
+
+.main-container .row-header {
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: white;
+  font-size: 1.5rem;
 }
 /*# sourceMappingURL=App.css.map */

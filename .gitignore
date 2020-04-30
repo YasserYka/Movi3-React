@@ -23,6 +23,6 @@ node_modules
 
 # VSCode history 
 .history
-*.scss
+
 *.map
 >>>>>>> d4fe91da418a1351096c1e47c1d5baed324d6e75
