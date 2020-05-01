@@ -15,7 +15,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-  background-color: black;
+  background-color: #1b1f23;
 }
 
 /*Main container, holds all the elements*/
@@ -32,7 +32,7 @@ body {
   font-family: 'Open Sans Condensed', sans-serif;
   -webkit-box-shadow: 0 0 20px 5px;
           box-shadow: 0 0 20px 5px;
-  background-color: black;
+  background-color: #1b1f23;
   /*Contains the subgroups of the navbar, left and right*/
 }
 

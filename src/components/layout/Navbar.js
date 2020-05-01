@@ -30,11 +30,11 @@ const Navbar = () => {
                             </div>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="https://i.postimg.cc/43X6F42c/profile-icons-netflix.jpg" width="40" height="40" class="rounded-circle" />
+                                    <img src='/images/profile4.png' width="40" height="40" class="rounded-circle" />
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-right toggled-nav-options" aria-labelledby="navbarDropdownMenuLink">
-                                    <a className="dropdown-item" href="#"><img src="https://i.postimg.cc/43w6CCjS/profile-icons-netflix-1.jpg" class="rounded-circle mr-1" width="40" height="40" /> Username</a>
-                                    <a className="dropdown-item" href="#"><img src="https://i.postimg.cc/RZ71RJd9/profile-icons-netflix-2.jpg" class="rounded-circle mr-1" width="40" height="40" /> Username</a>
+                                    <a className="dropdown-item" href="#"><img src='/images/profile1.png' class="rounded-circle mr-1" width="40" height="40" /> Username</a>
+                                    <a className="dropdown-item" href="#"><img src='/images/profile2.png' class="rounded-circle mr-1" width="40" height="40" /> Username</a>
                                     <a className="dropdown-item mt-1" href="#">Manage profiles</a>
                                     <div className="dropdown-divider"></div>
                                     <a className="dropdown-item" href="#">Log Out</a>
