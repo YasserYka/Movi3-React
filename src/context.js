@@ -3,21 +3,9 @@ const Context = React.createContext();
 
 export class Provider extends Component {
 
-    state = {
-        recommendedforyou: [],
-        trending: [],
-        beingwatched: [],
-        rows: []
-    }
+    state = { rows: [] }
 
-    componentDidMount() {
-        
-        /*fetch('http://localhost:8080/api/v1/movies')
-            .then(response => response.json())
-                .then(movies => {
-                    this.setState({ movie_list: movies })
-                });*/
-
+    componentDidMount() {        
         this.setState({ 
             rows: [
                 {

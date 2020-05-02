@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Comments from '../Comments';
-import LikeButton from '../LikeButton';
+import Comments from './comment/Comments';
+import LikeButton from './LikeButton';
 
 class Watch extends Component {
 

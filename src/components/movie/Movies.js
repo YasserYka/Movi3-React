@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Consumer } from '../../context';
-import Spinner from '../layout/Spinner';
+import Spinner from '../spinner/Spinner';
 import Movie from './Movie.js';
 
 class Movies extends Component {
@@ -27,7 +27,7 @@ class Movies extends Component {
                                                 {
                                                     row.movie_list.map(movie => (
                                                         <Movie  key={movie.id} movie={movie} />
-                                                    )
+                                                        )
                                                     )
                                                 }
                                             </div>
