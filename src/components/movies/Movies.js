@@ -9,23 +9,26 @@ class Movies extends Component {
         return (
             <Consumer>
                 {value => {
-                    
-                        const { movie_lists, heading } = value;
-                        
-                        if(movie_lists === undefined || movie_lists.length === 0)
+                        const { rows } = value;
+                        console.log(rows.length)
+
+                        if(rows === undefined || rows.length === 0)
                             return <Spinner />
                         else{
                             return (
                                 <React.Fragment>
-                                    <div>
-                                        <h3 className="text-dark text-center mb-4">{heading}&nbsp;<i class="fas fa-fire"></i></h3>
-                                    </div>
-                                    <div className="row">
-                                        {
-                                            movie_lists.map(list => list.map(element => <Movie key={element.id} movie={element} />) )
+                                    {
+                                        rows.map((row, index) => (
+                                                <div key={index}>
+                                                    
+                                                    <h3 className="text-dark text-center mb-4">{row.heading}&nbsp;<i class="fas fa-fire"></i></h3>
+                                                    <div className="row"> {row.movie_list.map(movie => <Movie key={movie.id} movie={movie} /> )} </div>
+                                                    <hr class="my-4" />
+
+                                                </div>
+                                            )
+                                        )
                                         }
-                                    </div>
-                                    <hr class="my-4" />
                                 </React.Fragment>
                             );
                         }
