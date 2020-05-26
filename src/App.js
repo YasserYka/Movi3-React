@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import Browse from './components/layout/Browse';
 import Index from './components/layout/Index';
 import Watch from './components/watch/Watch';
 
@@ -20,6 +21,7 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={Index} />
+                <Route exact path="/browse" component={Browse} />
                 <Route exact path="/movie/:id" component={Watch} />
               </Switch>
             </div>

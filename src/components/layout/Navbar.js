@@ -13,7 +13,7 @@ const Navbar = () => {
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Browse</a>
+                        <a class="nav-link" href="/browse">Browse</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Login</a>

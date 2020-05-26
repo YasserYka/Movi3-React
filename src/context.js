@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {ListOfMovies} from './util/Fakedata'
+
 const Context = React.createContext();
 
 export class Provider extends Component {
