@@ -10,7 +10,7 @@ export class Provider extends Component {
 
     componentDidMount() {
         this.setState({
-            rows: this.state.rows.concat({heading: 'Movies Being Watched Right Now' ,movie_list: ListOfMovies}, {heading: 'Trending' ,movie_list: ListOfMovies}, {heading: 'Most Viewed' ,movie_list: ListOfMovies})
+            rows: this.state.rows.concat({heading: 'Movies Being Watched Right Now' ,movie_list: ListOfMovies, browse: '#'}, {heading: 'Trending' ,movie_list: ListOfMovies, browse: '#'}, {heading: 'Most Viewed' ,movie_list: ListOfMovies, browse: '#'})
         })
     }
 

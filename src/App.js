@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Index from './components/layout/Index';
-import Watch from './components/Watch';
+import Watch from './components/watch/Watch';
 
 import { Provider } from './context';
 
@@ -22,6 +23,7 @@ class App extends Component {
                 <Route exact path="/movie/:id" component={Watch} />
               </Switch>
             </div>
+            <Footer />
           </React.Fragment>
         </Router>
       </Provider>

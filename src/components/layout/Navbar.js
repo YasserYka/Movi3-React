@@ -2,7 +2,7 @@ import React from 'react';
 
 const Navbar = () => {
     return (
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,7 +22,7 @@ const Navbar = () => {
             
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" type="search" placeholder="Quick Search" />
-                    <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>
