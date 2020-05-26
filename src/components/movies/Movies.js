@@ -10,9 +10,9 @@ class Movies extends Component {
             <Consumer>
                 {value => {
                     
-                        const { movie_list, heading } = value;
+                        const { movie_lists, heading } = value;
                         
-                        if(movie_list === undefined || movie_list.length === 0)
+                        if(movie_lists === undefined || movie_lists.length === 0)
                             return <Spinner />
                         else{
                             return (
@@ -22,12 +22,10 @@ class Movies extends Component {
                                     </div>
                                     <div className="row">
                                         {
-                                            movie_list.map(element => (
-                                                    <Movie key={element.id} movie={element} />
-                                                )
-                                            )
+                                            movie_lists.map(list => list.map(element => <Movie key={element.id} movie={element} />) )
                                         }
                                     </div>
+                                    <hr class="my-4" />
                                 </React.Fragment>
                             );
                         }

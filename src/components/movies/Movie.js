@@ -6,8 +6,8 @@ const Movie = (props) => {
     const { movie } = props;
 
     return (
-        <div className="col-md-6">
-            <div className="card mb-4 shadow-sm">
+        <div className="col-md-4">
+            <div className="card mb-3 shadow-sm">
                 <div className="card-body">
                 <img className="card-img-top mb-3 img-fluid" src={require('../../../public/images/' + movie.poster)} alt="poster of the movie"></img> 
                     <h5 className="text-center mb-2">{movie.name}</h5>

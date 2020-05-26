@@ -5,9 +5,20 @@ const Context = React.createContext();
 export class Provider extends Component {
 
     state = {
-        movie_list: ListOfMovies,
-        heading: 'Movies Being Watched Right Now'
+        movie_lists: [],
+        heading: []
     }
+
+    componentDidMount() {
+        //Fetch api
+
+        this.setState({
+            movie_lists: [...this.state.movie_lists, ListOfMovies],
+            heading: [...this.state.heading, 'Movies Being Watched Right Now']
+        })
+    }
+
+    ListOfMovies
 
     render() {
         return (
