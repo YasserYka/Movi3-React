@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 import Browse from './components/layout/Browse';
 import Index from './components/layout/Index';
 import Watch from './components/watch/Watch';
+import Login from './components/account/Login';
 
 import { Provider } from './context';
 
@@ -21,6 +22,7 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/" component={Index} />
+                <Route exact path="/login" component={Login} />
                 <Route exact path="/browse" component={Browse} />
                 <Route exact path="/movie/:id" component={Watch} />
               </Switch>

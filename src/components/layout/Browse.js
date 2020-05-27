@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Movie from '../movies/Movie'
 
 class Browse extends Component {
 
@@ -9,7 +10,8 @@ class Browse extends Component {
             title: '',
             rating: '',
             genre: '',
-            release: ''
+            release: '',
+            movies: []
         }
 
         this.submit = this.submit.bind(this);
@@ -35,16 +37,17 @@ class Browse extends Component {
 
         fetch('http://localhost:8080/api/v1/movies/advancedsearch?' + prarms.toString())
             .then(response => response.json())
-            .then(data => console.log(data));
+                .then(data => this.setState({movies: data}));
     }
 
     render () {
         return (
-            <form onSubmit={this.submit}>
-                <input onChange={(e) =>  this.setState({ title: e.target.value })} type="text" class="form-control mb-3" placeholder="Title" />
+            <React.Fragment>
+            <form onSubmit={this.submit} className="mb-5">
+                <input onChange={(e) =>  this.setState({ title: e.target.value })} type="text" className="form-control mb-3" placeholder="Title" />
 
                 <div class="form-group">
-                    <select id="rating" onChange={(e) => { this.setState({ rating: e.target.value })}} class="form-control mb-3">
+                    <select id="rating" onChange={(e) => { this.setState({ rating: e.target.value })}} className="form-control mb-3">
                         <option defaultValue>Rating</option>
                         <option>9+</option>
                         <option>8+</option>
@@ -59,7 +62,7 @@ class Browse extends Component {
                 </div>
 
                 <div class="form-group">
-                    <select onChange={(e) => { this.setState({ genre: e.target.value })}} class="form-control mb-3">
+                    <select onChange={(e) => { this.setState({ genre: e.target.value })}} className="form-control mb-3">
                         <option defaultValue>Genre</option>
                         <option>Horror</option>
                         <option>Action</option>
@@ -72,10 +75,13 @@ class Browse extends Component {
                     </select>
                 </div>
 
-                <input onChange={(e) => this.setState({ release: e.target.value })} type="text" class="form-control mb-3" placeholder="Release" />
+                <input onChange={(e) => this.setState({ release: e.target.value })} type="text" className="form-control mb-3" placeholder="Release" />
 
-                <button type="submit" class="btn btn-secondary btn-lg btn-block"> Search </button>
+                <button type="submit" className="btn btn-secondary btn-lg btn-block"> Search </button>
             </form>
+
+            {<div className="row"> { this.state.movies.map(movie => <Movie key={movie.id} movie={movie} /> ) } </div>}
+            </React.Fragment>
         )
     }
 }
