@@ -12,13 +12,13 @@ const Navbar = () => {
                 <img class="navbar-brand" src="images/logo.png" width="50" height="50" />
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <Link to="/" className="nav-link"> Home </Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/browse">Browse</a>
+                        <Link to="/browse" className="nav-link"> Browse </Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <Link to="/login" className="nav-link"> Login </Link>
                     </li>
                 </ul>
                 <ul class="navbar-nav ">

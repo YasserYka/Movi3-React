@@ -12,7 +12,7 @@ const Movie = (props) => {
                 <img className="card-img-top mb-3 img-fluid" src={require('../../../public/images/' + '243444.jpg')} alt="poster of the movie"></img> 
                     <h5 className="text-center mb-2">{movie.name}</h5>
                     <p className="card-text">
-                        <strong><i className="fas fa-calendar-alt"> Release Date</i></strong>: {movie.release}
+                        <strong><i className="fas fa-calendar-alt"> Release</i></strong>: {movie.release}
                         <br/>
                         <strong><i className="fas fa-star"> Rating</i></strong>: {movie.rating}
                     </p>

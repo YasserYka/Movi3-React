@@ -12,7 +12,6 @@ class Watch extends Component {
     }
 
     render () {
-
         return (
             <div align="center" className="embed-responsive embed-responsive-16by9">
                 <video id="videoPlayer" className="embed-responsive-item" controls></video>

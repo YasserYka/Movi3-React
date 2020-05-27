@@ -2,6 +2,32 @@ import React, { Component } from 'react';
 
 class Profile extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            profile: {
+                fullName: null,
+                username: null,
+                email: null,
+                imageId: 0,
+                bio: null
+            }
+        }
+    }
+
+    componentDidMount(){
+        fetch('http://localhost:8080/api/v1/users/profile', {
+        headers: {
+            Authorization : 'Bearer ' + localStorage.getItem('token') 
+        },
+        credentials: 'same-origin'})
+            .then(response => response.json())
+                .then(data => {
+                    console.log(data) 
+                    this.setState({profile: {fullName: null, username: data.username, email: data.email, imageId: data.profileImageId, bio: null}})});
+    }
+    
     render () {
         return (
             <div className="container">
@@ -27,8 +53,8 @@ class Profile extends Component {
                             <div className="row">
                                 <div className="col-12 col-sm-auto mb-3">
                                 <div className="mx-auto" style={{"width": "140px"}}>
-                                    <div className="d-flex justify-content-center align-items-center rounded" style={{"height": "140px", "backgroundColor": "rgb(233, 236, 239)"}}>
-                                    <span style={{"color": "rgb(166, 168, 170)", font: "bold 8pt Arial"}}>140x140</span>
+                                    <div className="d-flex justify-content-center align-items-center rounded" style={{"height": "140px"}}>
+                                        <img src="images/avatar3.png" class="rounded-circle z-depth-0" style={{maxWidth: "150px", maxHeight: "150px"}} alt="avatar image" />
                                     </div>
                                 </div>
                                 </div>
@@ -62,13 +88,13 @@ class Profile extends Component {
                                         <div className="col">
                                             <div className="form-group">
                                             <label>Full Name</label>
-                                            <input className="form-control" type="text" name="name" placeholder="John Smith" defaultValue="John Smith" />
+                                            <input className="form-control" type="text" name="name" placeholder={this.state.profile.fullName} readOnly />
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="form-group">
                                             <label>Username</label>
-                                            <input className="form-control" type="text" name="username" placeholder="johnny.s" defaultValue="johnny.s" />
+                                            <input className="form-control" type="text" name="username" placeholder={this.state.profile.username} readOnly />
                                             </div>
                                         </div>
                                         </div>
@@ -76,7 +102,7 @@ class Profile extends Component {
                                         <div className="col">
                                             <div className="form-group">
                                             <label>Email</label>
-                                            <input className="form-control" type="text" placeholder="user@example.com" />
+                                            <input className="form-control" type="text" placeholder={this.state.profile.email} readOnly />
                                             </div>
                                         </div>
                                         </div>
@@ -84,7 +110,7 @@ class Profile extends Component {
                                         <div className="col mb-3">
                                             <div className="form-group">
                                             <label>About</label>
-                                            <textarea className="form-control" rows="5" placeholder="My Bio"></textarea>
+                                            <textarea className="form-control" rows="5" placeholder={this.state.profile.bio} readOnly></textarea>
                                             </div>
                                         </div>
                                         </div>
