@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+<Link to="/signup" className="btn btn-outline-secondary btn-block"> Create Account </Link>
 
 const Navbar = () => {
     return (
@@ -7,7 +9,7 @@ const Navbar = () => {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarText">
-                <a class="navbar-brand" href="#">Brand</a>
+                <img class="navbar-brand" src="images/logo.png" width="50" height="50" />
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
@@ -25,7 +27,7 @@ const Navbar = () => {
                             <img src="images/avatar3.png" class="rounded-circle z-depth-0" width="40" height="40" alt="avatar image" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
-                            <a class="dropdown-item" href="#">View Profile</a>
+                            <Link to="/profile" className="dropdown-item"> View Profile </Link>
                             <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </li>

@@ -43,44 +43,44 @@ class Browse extends Component {
     render () {
         return (
             <React.Fragment>
-            <form onSubmit={this.submit} className="mb-5">
-                <input onChange={(e) =>  this.setState({ title: e.target.value })} type="text" className="form-control mb-3" placeholder="Title" />
+                <form onSubmit={this.submit} className="mb-5">
+                    <input onChange={(e) =>  this.setState({ title: e.target.value })} type="text" className="form-control mb-3" placeholder="Title" />
 
-                <div class="form-group">
-                    <select id="rating" onChange={(e) => { this.setState({ rating: e.target.value })}} className="form-control mb-3">
-                        <option defaultValue>Rating</option>
-                        <option>9+</option>
-                        <option>8+</option>
-                        <option>7+</option>
-                        <option>6+</option>
-                        <option>5+</option>
-                        <option>4+</option>
-                        <option>3+</option>
-                        <option>2+</option>
-                        <option>1+</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <select id="rating" onChange={(e) => { this.setState({ rating: e.target.value })}} className="form-control mb-3">
+                            <option defaultValue>Rating</option>
+                            <option>9+</option>
+                            <option>8+</option>
+                            <option>7+</option>
+                            <option>6+</option>
+                            <option>5+</option>
+                            <option>4+</option>
+                            <option>3+</option>
+                            <option>2+</option>
+                            <option>1+</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <select onChange={(e) => { this.setState({ genre: e.target.value })}} className="form-control mb-3">
-                        <option defaultValue>Genre</option>
-                        <option>Horror</option>
-                        <option>Action</option>
-                        <option>Comedy</option>
-                        <option>Adventure</option>
-                        <option>Crime</option>
-                        <option>Romance</option>
-                        <option>Documetary</option>
-                        <option>Anime</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <select onChange={(e) => { this.setState({ genre: e.target.value })}} className="form-control mb-3">
+                            <option defaultValue>Genre</option>
+                            <option>Horror</option>
+                            <option>Action</option>
+                            <option>Comedy</option>
+                            <option>Adventure</option>
+                            <option>Crime</option>
+                            <option>Romance</option>
+                            <option>Documetary</option>
+                            <option>Anime</option>
+                        </select>
+                    </div>
 
-                <input onChange={(e) => this.setState({ release: e.target.value })} type="text" className="form-control mb-3" placeholder="Release" />
+                    <input onChange={(e) => this.setState({ release: e.target.value })} type="text" className="form-control mb-3" placeholder="Release" />
 
-                <button type="submit" className="btn btn-secondary btn-lg btn-block"> Search </button>
-            </form>
+                    <button type="submit" className="btn btn-secondary btn-lg btn-block"> Search </button>
+                </form>
 
-            {<div className="row"> { this.state.movies.map(movie => <Movie key={movie.id} movie={movie} /> ) } </div>}
+                {<div className="row"> { this.state.movies.map(movie => <Movie key={movie.id} movie={movie} /> ) } </div>}
             </React.Fragment>
         )
     }
