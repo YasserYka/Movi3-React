@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-<Link to="/signup" className="btn btn-outline-secondary btn-block"> Create Account </Link>
+
+import Quicksearch from './Quicksearch';
 
 const Navbar = () => {
     return (
@@ -24,7 +25,7 @@ const Navbar = () => {
                 <ul class="navbar-nav ">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="images/avatar3.png" class="rounded-circle z-depth-0" width="40" height="40" alt="avatar image" />
+                            <img src="images/avatar0.png" class="rounded-circle z-depth-0" width="40" height="40" alt="avatar image" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
                             <Link to="/profile" className="dropdown-item"> View Profile </Link>
@@ -32,10 +33,7 @@ const Navbar = () => {
                         </div>
                     </li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Quick Search" />
-                    <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <Quicksearch />
             </div>
         </nav>
     )
