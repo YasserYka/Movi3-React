@@ -23,9 +23,7 @@ class Profile extends Component {
         },
         credentials: 'same-origin'})
             .then(response => response.json())
-                .then(data => {
-                    console.log(data) 
-                    this.setState({profile: {fullName: null, username: data.username, email: data.email, imageId: data.profileImageId, bio: null}})});
+                .then(data => this.setState({profile: {fullName: null, username: data.username, email: data.email, imageId: data.profileImageId, bio: null}}));
     }
     
     render () {

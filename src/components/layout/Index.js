@@ -1,10 +1,10 @@
 import React from 'react';
-import Movies from '../movies/Movies';
+import FrontMovies from '../movies/FrontMovies';
 
 const Index = () => {
     return (
         <React.Fragment>
-            <Movies />
+            <FrontMovies />
         </React.Fragment>
     )
 }

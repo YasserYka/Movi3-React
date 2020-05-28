@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Navbar from './components/layout/Navbar';
-import Browse from './components/layout/Browse';
+import AdvancedSearch from './components/layout/AdvancedSearch';
 import Index from './components/layout/Index';
 import Watch from './components/watch/Watch';
 import Login from './components/account/Login';
@@ -26,7 +26,7 @@ class App extends Component {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/profile" component={Profile} />
-                <Route exact path="/browse" component={Browse} />
+                <Route exact path="/advancedsearch" component={AdvancedSearch} />
                 <Route exact path="/movie/:id" component={Watch} />
               </Switch>
             </div>

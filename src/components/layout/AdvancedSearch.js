@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Movie from '../movies/Movie'
+import Movies from '../movies/Movies'
 
 class Browse extends Component {
 
@@ -80,7 +80,7 @@ class Browse extends Component {
                     <button type="submit" className="btn btn-secondary btn-lg btn-block"> Search </button>
                 </form>
 
-                {<div className="row"> { this.state.movies.map(movie => <Movie key={movie.id} movie={movie} /> ) } </div>}
+                <Movies movies={this.state.movies} />
             </React.Fragment>
         )
     }
