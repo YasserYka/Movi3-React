@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
 import Movies from './movies/Movies';
+import { ListOfMovies } from '../util/Fakedata'
 
 class Browse extends Component {
 
     state = {
-        movies: []
+        movies: [],
+        url: null
     }
 
     componentDidMount(){
-        fetch(this.props.url)
-            .then(response => response.json())
-                .then(data => this.setState({movies: data});
+        const { url } = this.props.location.state;
+
+        this.setState({url: url, movies: ListOfMovies});
     }
 
     render () {
         return (
-            <Movies movies={this.state.movies} />
+            <React.Fragment>
+                <Movies movies={this.state.movies} />
+            </React.Fragment>
         )
     }
 }
 
-export default Quicksearch;
+export default Browse;

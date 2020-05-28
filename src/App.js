@@ -8,6 +8,7 @@ import Watch from './components/watch/Watch';
 import Login from './components/account/Login';
 import Signup from './components/account/Signup';
 import Profile from './components/account/Profile';
+import Browse from './components/Browse';
 
 import { Provider } from './context';
 
@@ -26,6 +27,7 @@ class App extends Component {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/profile" component={Profile} />
+                <Route exact path="/browse" component={Browse} />
                 <Route exact path="/advancedsearch" component={AdvancedSearch} />
                 <Route exact path="/movie/:id" component={Watch} />
               </Switch>
