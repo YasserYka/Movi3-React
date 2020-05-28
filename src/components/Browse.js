@@ -6,7 +6,7 @@ class Browse extends Component {
 
     state = {
         movies: [],
-        url: null
+        url: null,
     }
 
     componentDidMount(){

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Movies from '../movies/Movies'
+import Spinner from '../spinner/Spinner';
+import { ListOfMovies } from '../../util/Fakedata';
 
 class Browse extends Component {
 
@@ -11,10 +13,18 @@ class Browse extends Component {
             rating: '',
             genre: '',
             release: '',
-            movies: []
+            movies: [],
+            searchtriggered: false,
+            loadmoretriggered: false,
+            loadCount: 0,
+            prarms: null,
+            totalLoad: 1
         }
 
+        this.loadSize = 6;
+
         this.submit = this.submit.bind(this);
+        this.loadmore = this.loadmore.bind(this);
     }
 
     submit(event){
@@ -33,11 +43,21 @@ class Browse extends Component {
             prarms.append("title", this.state.title);
 
         if(this.state.release !== '')
-            prarms.append("release", this.state.release);
+            prarms.append("release", this.state.released);
 
-        fetch('http://localhost:8080/api/v1/movies/advancedsearch?' + prarms.toString())
+        this.setState({prarms: prarms});
+
+        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount}&size=6` + prarms.toString())
             .then(response => response.json())
-                .then(data => this.setState({movies: data}));
+                .then(data => {console.log(data); this.setState({totalLoad: data.totalPages, loadCount: this.state.loadCount + 1, movies: data.content, searchtriggered: true, loadmoretriggered: false})});
+    }
+
+    loadmore(){
+        this.setState({loadmoretriggered: true});
+
+        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount}&size=6` + this.state.prarms.toString())
+            .then(response => response.json())
+                .then(data => this.setState({movies: this.state.movies.concat(data.content), loadmoretriggered: false, loadCount: this.state.loadCount + 1}));
     }
 
     render () {
@@ -80,7 +100,9 @@ class Browse extends Component {
                     <button type="submit" className="btn btn-secondary btn-lg btn-block"> Search </button>
                 </form>
 
-                <Movies movies={this.state.movies} />
+                { this.state.movies && this.state.movies.length === 0 ? (this.state.searchtriggered ? <Spinner /> : null) : <Movies movies={this.state.movies} /> }
+
+                { this.state.loadmoretriggered ? <Spinner /> : this.state.movies  && this.state.movies.length !== 0 && this.state.totalLoad > this.state.loadCount ? <button onClick={this.loadmore} className="btn btn-primary btn-lg btn-block mb-3"> Load More </button> : null }
             </React.Fragment>
         )
     }
