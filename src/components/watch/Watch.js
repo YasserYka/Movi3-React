@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import Comments from './Comments';
+import Video from './Video';
 
 class Watch extends Component {
 
     state = {
         url: `http://localhost:8080/api/v1/movie/${this.props.match.params.id}`,
-        id: this.props.match.params.id
+        id: this.props.match.params.id,
+        adaptive: false
     }
-
-    //componentDidMount(){
-        //const player = window.dashjs.MediaPlayer().create();
-       // player.initialize(document.querySelector("#videoPlayer"), /*this.state.url*/ 'https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd', false);
-    //}
 
     render () {
         return (
             <React.Fragment>
-                <div align="center" className="embed-responsive embed-responsive-16by9">
-                    <video id="videoPlayer" className="embed-responsive-item" controls></video>
+                <div class="btn-group" role="group">
+                <button type="button" onClick={() => this.setState({adaptive: false})} class="btn btn-secondary" disabled={!this.state.adaptive}> Regular Streaming </button>
+                    <button type="button" onClick={() => this.setState({adaptive: true})} class="btn btn-secondary" disabled={this.state.adaptive}> Adaptive Streaming </button>
                 </div>
-                <Comments />
+                <Video />
+                <Comments movieId={2} />
             </React.Fragment>
         )
     }

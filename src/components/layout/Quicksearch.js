@@ -33,9 +33,7 @@ class Quicksearch extends Component {
             <form className="form-inline my-2 my-lg-0">
                 <input list="results" onChange={this.onChange} name="query" className="form-control mr-sm-2" type="search" id="quicksearch" placeholder="Search By Title" />
                 <datalist id="results">
-                    {
-                        this.state.results.map(result => <option value={result.title}></option> )
-                    }
+                    { this.state.results.map(result => <option value={result.title}></option> ) }
                 </datalist>
             </form>
         )
