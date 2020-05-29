@@ -13,11 +13,11 @@ class Watch extends Component {
     render () {
         return (
             <React.Fragment>
-                <div class="btn-group" role="group">
-                <button type="button" onClick={() => this.setState({adaptive: false})} class="btn btn-secondary" disabled={!this.state.adaptive}> Regular Streaming </button>
-                    <button type="button" onClick={() => this.setState({adaptive: true})} class="btn btn-secondary" disabled={this.state.adaptive}> Adaptive Streaming </button>
+                <div className="btn-group d-flex mb-3" role="group">
+                    <button type="button" onClick={() => this.setState({adaptive: false})} class={`btn btn-${this.state.adaptive ? 'primary' : 'secondary'} w-100`} disabled={!this.state.adaptive}> Regular Streaming </button>
+                    <button type="button" onClick={() => this.setState({adaptive: true})} class={`btn btn-${this.state.adaptive ? 'secondary' : 'primary'} w-100`} disabled={this.state.adaptive}> Adaptive Streaming </button>
                 </div>
-                <Video />
+                <Video adaptive={this.state.adaptive} />
                 <Comments movieId={2} />
             </React.Fragment>
         )
