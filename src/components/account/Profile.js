@@ -11,19 +11,29 @@ class Profile extends Component {
                 username: null,
                 email: null,
                 imageId: 0,
-                bio: null
+                bio: null,
+                enabled: false,
+                lastSeen:null,
+                joined: null,
             }
         }
     }
-
+    
     componentDidMount(){
-        fetch('http://localhost:8080/api/v1/users/profile', {
-        headers: {
-            Authorization : 'Bearer ' + localStorage.getItem('token') 
-        },
-        credentials: 'same-origin'})
-            .then(response => response.json())
-                .then(data => this.setState({profile: {fullName: data.fullname, username: data.username, email: data.email, imageId: data.profileImageId, bio: data.bio}}));
+
+        if(localStorage.getItem('token') !== null)
+            fetch('http://localhost:8080/api/v1/users/profile', {
+            headers: {
+                Authorization : 'Bearer ' + localStorage.getItem('token') 
+            },
+            credentials: 'same-origin'})
+                .then(response => response.json())
+                    .then(data => this.setState({profile: {enabled: data.enabled, lastSeen: data.lastSeen, joined: data.creationDate, fullName: data.fullName, username: data.username, email: data.email, imageId: data.profileImageId, bio: data.bio}}));
+    }
+
+    logout(){
+        if(localStorage.getItem('token') !== null)
+            localStorage.removeItem('token');
     }
     
     render () {
@@ -60,7 +70,7 @@ class Profile extends Component {
                                 <div className="text-center text-sm-left mb-2 mb-sm-0">
                                     <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">{this.state.profile.fullName}</h4>
                                     <p className="mb-0">{this.state.profile.username}</p>
-                                    <div className="text-muted"><small>Last seen 2 hours ago</small></div>
+                                    <div className="text-muted"><small>Last seen {this.state.profile.lastSeen}</small></div>
                                     <div className="mt-2">
                                     <button className="btn btn-primary" type="button">
                                         <i className="fa fa-fw fa-camera"></i>
@@ -69,8 +79,8 @@ class Profile extends Component {
                                     </div>
                                 </div>
                                 <div className="text-center text-sm-right">
-                                    <span className="badge badge-secondary">administrator</span>
-                                    <div className="text-muted"><small>Joined 09 Dec 2017</small></div>
+                                    {this.state.profile.enabled ? <span className="badge badge-secondary">verified</span> : <span className="badge badge-danger">not verified</span>} 
+                                    <div className="text-muted"><small>Joined {this.state.profile.lastSeen}</small></div>
                                 </div>
                                 </div>
                             </div>
@@ -182,7 +192,7 @@ class Profile extends Component {
                         <div className="card mb-3">
                         <div className="card-body">
                             <div className="px-xl-3">
-                            <button className="btn btn-block btn-secondary">
+                            <button onClick={this.logout} className="btn btn-block btn-secondary">
                                 <i className="fa fa-sign-out"></i>
                                 <span>Logout</span>
                             </button>

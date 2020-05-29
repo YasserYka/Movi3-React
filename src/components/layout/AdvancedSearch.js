@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Movies from '../movies/Movies'
 import Spinner from '../spinner/Spinner';
-import { ListOfMovies } from '../../util/Fakedata';
 
 class Browse extends Component {
 
