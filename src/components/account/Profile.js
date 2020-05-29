@@ -20,7 +20,6 @@ class Profile extends Component {
     }
     
     componentDidMount(){
-
         if(localStorage.getItem('token') !== null)
             fetch('http://localhost:8080/api/v1/users/profile', {
             headers: {
@@ -62,7 +61,7 @@ class Profile extends Component {
                                 <div className="col-12 col-sm-auto mb-3">
                                 <div className="mx-auto" style={{"width": "140px"}}>
                                     <div className="d-flex justify-content-center align-items-center rounded" style={{"height": "140px"}}>
-                                        <img src={`images/avatar${this.state.profile.imageId}.png`} class="rounded-circle z-depth-0" style={{maxWidth: "150px", maxHeight: "150px"}} alt="avatar image" />
+                                        <img src={`images/avatar${this.state.profile.imageId}.png`} class="rounded-circle z-depth-0" style={{maxWidth: "150px", maxHeight: "150px"}} alt="avatar" />
                                     </div>
                                 </div>
                                 </div>

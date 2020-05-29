@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Movies from './movies/Movies';
-import { ListOfMovies } from '../util/Fakedata'
 
 class Browse extends Component {
 
@@ -12,7 +11,9 @@ class Browse extends Component {
     componentDidMount(){
         const { url } = this.props.location.state;
 
-        this.setState({url: url, movies: ListOfMovies});
+        fetch(`${url}?page=0&size=6`)
+            .then(response => response.json())
+                .then(data => this.setState({movies: data.content}));
     }
 
     render () {

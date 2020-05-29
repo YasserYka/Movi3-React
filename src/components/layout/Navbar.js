@@ -10,7 +10,7 @@ const Navbar = () => {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarText">
-                <img className="navbar-brand" src="images/logo.png" width="50" height="50" />
+                <img alt="logo" className="navbar-brand" src="/logo.png" width="50" height="50" />
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item">
                         <Link to="/" className="nav-link"> Home </Link>
@@ -25,7 +25,7 @@ const Navbar = () => {
                 <ul className="navbar-nav ">
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="images/avatar0.png" className="rounded-circle z-depth-0" width="40" height="40" alt="avatar image" />
+                            <img src="/avatar0.png" className="rounded-circle z-depth-0" width="40" height="40" alt="avatar" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
                             <Link to="/profile" className="dropdown-item"> View Profile </Link>
