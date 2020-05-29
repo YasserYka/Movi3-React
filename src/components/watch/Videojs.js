@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
-class Video extends Component {
+class Videojs extends Component {
 
     videojs = null;
     
     componentDidMount() {
-        this.videojs = videojs(this.videoNode, this.videoJsConfig(this.props.url), function onPlayerReady() {});
+        this.videojs = videojs(this.videoNode, this.config(this.props.url), function onPlayerReady() {});
     }
 
-    videoJsConfig(url){
+    config(url){
         return {
             autoplay: true,
             controls: true, 
@@ -22,18 +22,18 @@ class Video extends Component {
     
     componentWillUnmount() {
         if (this.videojs)
-          this.videojs.dispose();
+            this.videojs.dispose();
     }
-    
+
     render() {
         return (
             <div>	
-            <div data-vjs-player>
-              <video ref={ node => this.videoNode = node } className="video-js embed-responsive embed-responsive-16by9"></video>
+                <div data-vjs-player>
+                    <video ref={ node => this.videoNode = node } className="video-js embed-responsive embed-responsive-16by9"></video>
+                </div>
             </div>
-          </div>
         );
     }
 }
 
-export default Video;
+export default Videojs;

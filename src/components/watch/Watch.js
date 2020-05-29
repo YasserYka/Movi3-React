@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Comments from './Comments';
-import Video from './Video';
+import Videojs from './Videojs';
+import Dashjs from './Dashjs';
 
 class Watch extends Component {
 
     state = {
         url: `http://localhost:8080/api/v1/movie/${this.props.match.params.id}`,
         id: this.props.match.params.id,
-        adaptive: false
+        adaptive: true
     }
 
     render () {
@@ -17,7 +18,7 @@ class Watch extends Component {
                     <button type="button" onClick={() => this.setState({adaptive: false})} class={`btn btn-${this.state.adaptive ? 'primary' : 'secondary'} w-100`} disabled={!this.state.adaptive}> Regular Streaming </button>
                     <button type="button" onClick={() => this.setState({adaptive: true})} class={`btn btn-${this.state.adaptive ? 'secondary' : 'primary'} w-100`} disabled={this.state.adaptive}> Adaptive Streaming </button>
                 </div>
-                <Video url={'http://localhost:8080/api/v1/region/sample.mp4'} adaptive={this.state.adaptive} />
+                {this.state.adaptive ? <Dashjs /> : <Videojs url={'http://localhost:8080/api/v1/region/sample.mp4'} />}
                 <Comments movieId={2} />
             </React.Fragment>
         )
