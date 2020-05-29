@@ -37,7 +37,6 @@ class Quicksearch extends Component {
                         this.state.results.map(result => <option value={result.title}></option> )
                     }
                 </datalist>
-                <button className="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
         )
     }

@@ -1,30 +1,28 @@
 import React, { Component } from 'react';
+import Comment from './Comment';
 
 class Comments extends Component {
 
     constructor(props){
         super(props);
 
-        this.state = {}
+        this.state = {
+            comments: [{body: 'Cool', username: 'Some1', date: '2020/5/5', avatarId: 4}, {body: 'Cool', username: 'Some1', date: "2020/5/5", avatarId: 2}]
+        }
     }
+
+    /*componentDidMount(){
+        fetch('http://localhost:8080/api/v1/comments')
+            .then(response => response.json())
+                .then(data => this.setState({comments: data.content}));
+    }*/
     
     render () {
         return (
             <div className="container mt-3 mb-3">
-                <div className="media border p-3">
-                    <img className="mr-3" width="80" src="/avatar1.png" alt="John Doe"  />
-                    <div className="media-body">
-                        <h5><strong> John Doe </strong><small><i>February 19, 2016</i></small></h5>
-                        <p className="mt-2 ml-2"> Awesome! </p>
-                    </div>
-                </div>
-                <div className="media border p-3">
-                    <img className="mr-3" width="80" src="/avatar1.png" alt="John Doe"  />
-                    <div className="media-body">
-                        <h5><strong> John Doe </strong><small><i>February 19, 2016</i></small></h5>
-                        <p className="mt-2 ml-2"> Awesome! </p>
-                    </div>
-                </div>
+                {
+                    this.state.comments.map(comment => ( <Comment comment={comment} /> ))
+                }
             </div>
         )
     }
