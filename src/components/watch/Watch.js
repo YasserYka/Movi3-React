@@ -17,7 +17,7 @@ class Watch extends Component {
                     <button type="button" onClick={() => this.setState({adaptive: false})} class={`btn btn-${this.state.adaptive ? 'primary' : 'secondary'} w-100`} disabled={!this.state.adaptive}> Regular Streaming </button>
                     <button type="button" onClick={() => this.setState({adaptive: true})} class={`btn btn-${this.state.adaptive ? 'secondary' : 'primary'} w-100`} disabled={this.state.adaptive}> Adaptive Streaming </button>
                 </div>
-                <Video adaptive={this.state.adaptive} />
+                <Video url={'http://localhost:8080/api/v1/region/sample.mp4'} adaptive={this.state.adaptive} />
                 <Comments movieId={2} />
             </React.Fragment>
         )
