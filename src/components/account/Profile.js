@@ -95,13 +95,13 @@ class Profile extends Component {
                                         <div className="col">
                                             <div className="form-group">
                                             <label>Full Name</label>
-                                            <input className="form-control" type="text" name="name" placeholder={this.state.profile.fullName} readOnly />
+                                            <input autoComplete="off" className="form-control" type="text" name="name" placeholder={this.state.profile.fullName} readOnly />
                                             </div>
                                         </div>
                                         <div className="col">
                                             <div className="form-group">
                                             <label>Username</label>
-                                            <input className="form-control" type="text" name="username" placeholder={this.state.profile.username} readOnly />
+                                            <input autoComplete="off" className="form-control" type="text" name="username" placeholder={this.state.profile.username} readOnly />
                                             </div>
                                         </div>
                                         </div>
@@ -109,7 +109,7 @@ class Profile extends Component {
                                         <div className="col">
                                             <div className="form-group">
                                             <label>Email</label>
-                                            <input className="form-control" type="text" placeholder={this.state.profile.email} readOnly />
+                                            <input autoComplete="off" className="form-control" type="text" placeholder={this.state.profile.email} readOnly />
                                             </div>
                                         </div>
                                         </div>
@@ -130,7 +130,7 @@ class Profile extends Component {
                                         <div className="col">
                                             <div className="form-group">
                                             <label>Current Password</label>
-                                            <input className="form-control" type="password" placeholder="••••••" />
+                                            <input autoComplete="off" className="form-control" type="password" placeholder="••••••" />
                                             </div>
                                         </div>
                                         </div>
@@ -138,7 +138,7 @@ class Profile extends Component {
                                         <div className="col">
                                             <div className="form-group">
                                             <label>New Password</label>
-                                            <input className="form-control" type="password" placeholder="••••••" />
+                                            <input autoComplete="off" className="form-control" type="password" placeholder="••••••" />
                                             </div>
                                         </div>
                                         </div>
@@ -146,7 +146,7 @@ class Profile extends Component {
                                         <div className="col">
                                             <div className="form-group">
                                             <label>Confirm <span className="d-none d-xl-inline">Password</span></label>
-                                            <input className="form-control" type="password" placeholder="••••••" /></div>
+                                            <input autoComplete="off" className="form-control" type="password" placeholder="••••••" /></div>
                                         </div>
                                         </div>
                                     </div>
@@ -157,15 +157,15 @@ class Profile extends Component {
                                             <label>Email Notifications</label>
                                             <div className="custom-controls-stacked px-2">
                                             <div className="custom-control custom-checkbox">
-                                                <input type="checkbox" className="custom-control-input" id="notifications-blog" defaultChecked="" />
+                                                <input autoComplete="off" type="checkbox" className="custom-control-input" id="notifications-blog" defaultChecked="" />
                                                 <label className="custom-control-label" htmlFor="notifications-blog">Blog posts</label>
                                             </div>
                                             <div className="custom-control custom-checkbox">
-                                                <input type="checkbox" className="custom-control-input" id="notifications-news" defaultChecked="" />
+                                                <input autoComplete="off" type="checkbox" className="custom-control-input" id="notifications-news" defaultChecked="" />
                                                 <label className="custom-control-label" htmlFor="notifications-news">Newsletter</label>
                                             </div>
                                             <div className="custom-control custom-checkbox">
-                                                <input type="checkbox" className="custom-control-input" id="notifications-offers" defaultChecked="" />
+                                                <input autoComplete="off" type="checkbox" className="custom-control-input" id="notifications-offers" defaultChecked="" />
                                                 <label className="custom-control-label" htmlFor="notifications-offers">Personal Offers</label>
                                             </div>
                                             </div>

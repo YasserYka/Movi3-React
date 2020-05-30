@@ -26,7 +26,7 @@ class Signup extends Component {
             <form>
                 <div className="form-group" onSubmit={this.submit}>
                     <label htmlFor="username">Username</label>
-                    <input type="text" className="form-control" name="username" id="username" placeholder="Enter Username" />
+                    <input autoComplete="username" type="text" className="form-control" name="username" id="username" placeholder="Enter Username" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
@@ -35,11 +35,11 @@ class Signup extends Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password1">Password</label>
-                    <input name="password1" type="password" className="form-control" id="password1" placeholder="Password" />
+                    <input name="password1" autoComplete="new-password" type="password" className="form-control" id="password1" placeholder="Password" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password2">Confirm Password</label>
-                    <input type="password" name="password2" className="form-control" id="password2" placeholder="Rewrite Password" />
+                    <input type="password" autoComplete="new-password" name="password2" className="form-control" id="password2" placeholder="Rewrite Password" />
                 </div>
                 <button type="submit" className="btn btn-secondary btn-block"> Signup </button>
                 <Link to="/login" className="btn btn-outline-secondary btn-block"> Already Have An Account? </Link>
