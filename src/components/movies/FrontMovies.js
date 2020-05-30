@@ -20,7 +20,7 @@ class FrontMovies extends Component {
                                         rows.map((row, index) => 
                                                 <div key={index}>
                                                     <div>
-                                                        {row.button ? <Link to={{pathname: '/browsemore', state: {url: row.url}}} className="btn btn-outline-dark float-right"> <i className="fas fa-chevron-right"></i> Browse More </Link> : null}
+                                                        {row.button ? <Link to={{pathname: '/browsemore', state: {url: row.url, heading: row.heading, icon: row.icon}}} className="btn btn-outline-dark float-right"> <i className="fas fa-chevron-right"></i> Browse More </Link> : null}
                                                         <h3 className="text-dark text-left mb-4">{row.heading}&nbsp;<i className={`ml-1 fas fa-${row.icon}`} ></i></h3>
                                                     </div>
                                                     <Movies movies={row.movies} />

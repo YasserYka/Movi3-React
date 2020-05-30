@@ -29,7 +29,7 @@ class App extends Component {
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/browsemore" component={BrowseMore} />
                 <Route exact path="/advancedsearch" component={AdvancedSearch} />
-                <Route exact path="/movie/:id" component={Watch} />
+                <Route exact path="/movie/:movieId" component={Watch} />
               </Switch>
             </div>
           </React.Fragment>
