@@ -12,4 +12,5 @@ class Dashjs extends Component {
         );
     }
 }
+
 export default Dashjs;
