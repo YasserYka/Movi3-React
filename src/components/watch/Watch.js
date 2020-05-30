@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Comments from './Comments';
-import Videojs from './Videojs';
-import Dashjs from './Dashjs';
+import Comments from './comments/Comments';
+import Videojs from './libs/Videojs';
+import Dashjs from './libs/Dashjs';
 
 class Watch extends Component {
 
     state = {
-        adaptiveStreaming: true
+        adaptiveStreaming: false
     }
 
     render () {
@@ -18,7 +18,7 @@ class Watch extends Component {
                     <button type="button" onClick={() => this.setState({adaptiveStreaming: true})} class={`btn btn-${this.state.adaptiveStreaming ? 'secondary' : 'primary'} w-100`} disabled={this.state.adaptiveStreaming}> Adaptive Streaming </button>
                 </div>
                 
-                {this.state.adaptiveStreaming ? <Dashjs url={`http://localhost:8080/api/v1/${this.props.match.params.path}`} /> : <Videojs url={`http://localhost:8080/api/v1/region/${this.props.match.params.path}`} />}
+                {this.state.adaptiveStreaming ? <Dashjs url={`http://localhost:8080/api/v1/manifests/sample_manifest.mpd`} /> : <Videojs url={`http://localhost:8080/api/v1/region/sample_720.mp4`} />}
 
                 <Comments movieId={this.props.match.params.movieId} />
 

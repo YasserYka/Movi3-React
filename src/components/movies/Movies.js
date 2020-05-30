@@ -1,6 +1,5 @@
 import React from 'react';
 import Movie from './Movie';
-import Spinner from '../spinner/Spinner';
 
 const Movies = (props) => {
 
@@ -8,7 +7,7 @@ const Movies = (props) => {
 
     
     return (
-        <div className="row"> { movies.map(movie => <Movie key={movie.id} movie={movie} /> ) } </div>
+        <div className="row"> { movies.map((movie, index) => <Movie key={index} movie={movie} /> ) } </div>
     )
 }
 

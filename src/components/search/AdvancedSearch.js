@@ -25,7 +25,7 @@ class Browse extends Component {
         this.submit = this.submit.bind(this);
         this.loadmore = this.loadmore.bind(this);
     }
-
+    
     submit(event){
         if(event)
             event.preventDefault();
@@ -34,19 +34,16 @@ class Browse extends Component {
 
         if(this.state.rating !== '' && this.state.rating !== 'Rating')
             prarms.append('rating', this.state.rating.slice(0, 1));
-
         if(this.state.genre !== '' && this.state.genre !=='Genre')
             prarms.append("genre", this.state.genre);
-
         if(this.state.title !== '')
             prarms.append("title", this.state.title);
-
         if(this.state.release !== '')
             prarms.append("release", this.state.released);
 
-        this.setState({prarms: prarms});
+        this.setState({prarms: prarms, loadCount: 0});
 
-        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount}&size=6` + prarms.toString())
+        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount}&size=6${prarms.toString().length !== 0 ? `&${prarms.toString()}` : ''}`)
             .then(response => response.json())
                 .then(data => {console.log(data); this.setState({totalLoad: data.totalPages, loadCount: this.state.loadCount + 1, movies: data.content, searchtriggered: true, loadmoretriggered: false})});
     }
@@ -54,7 +51,7 @@ class Browse extends Component {
     loadmore(){
         this.setState({loadmoretriggered: true});
 
-        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount}&size=6` + this.state.prarms.toString())
+        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount}&size=6${this.state.prarms.toString().length !== 0 ? `&${this.state.prarms.toString()}` : ''}`)
             .then(response => response.json())
                 .then(data => this.setState({movies: this.state.movies.concat(data.content), loadmoretriggered: false, loadCount: this.state.loadCount + 1}));
     }
@@ -65,7 +62,7 @@ class Browse extends Component {
                 <form onSubmit={this.submit} className="mb-5">
                     <input onChange={(e) =>  this.setState({ title: e.target.value })} type="text" className="form-control mb-3" placeholder="Title" />
 
-                    <div class="form-group">
+                    <div className="form-group">
                         <select id="rating" onChange={(e) => { this.setState({ rating: e.target.value })}} className="form-control mb-3">
                             <option defaultValue>Rating</option>
                             <option>9+</option>
@@ -80,7 +77,7 @@ class Browse extends Component {
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div className="form-group">
                         <select onChange={(e) => { this.setState({ genre: e.target.value })}} className="form-control mb-3">
                             <option defaultValue>Genre</option>
                             <option>Horror</option>

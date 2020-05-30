@@ -14,7 +14,7 @@ class Comments extends Component {
     componentDidMount(){
         fetch(`http://localhost:8080/api/v1/comments/movieid/${this.props.movieId}`)
             .then(response => response.json())
-                .then(data => this.setState({comments: data}));
+                .then(data => console.log(data));
     }
     
     render () {
