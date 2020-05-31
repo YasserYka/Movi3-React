@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router'
+import AlertResponseText from './alert/AlertResponseText';
 
 class Login extends Component {
 
@@ -13,7 +14,6 @@ class Login extends Component {
         }
         
         this.submit = this.submit.bind(this);
-        this.AlertResponseMessage = this.AlertResponseMessage.bind(this);
     }
 
     submit(event){
@@ -33,23 +33,13 @@ class Login extends Component {
             }).then(data => localStorage.setItem('token', data.token));
     }
 
-    AlertResponseMessage(){
-        return (
-            <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>{this.state.responseMessage}</strong>
-                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        )
-    }
 
     render () {
         return (
             <React.Fragment>
                 <form onSubmit={this.submit}>
 
-                    { this.state.responseMessage ? <this.AlertResponseMessage /> : null }
+                    <AlertResponseText responseMessage={this.state.responseMessage} />
 
                     <div className="form-group">
                         <label htmlFor="username">Username</label>

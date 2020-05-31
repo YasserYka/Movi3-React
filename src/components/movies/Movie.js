@@ -11,13 +11,18 @@ const Movie = (props) => {
                 <div className="card-body">
                 <img className="card-img-top mb-3 img-fluid" src={`http://localhost:8080/${movie.posterUrl}`} width="150" alt="poster of the movie"></img> 
                     <h5 className="text-center mb-2">{movie.title}</h5>
-                    <p className="card-text">
-                        <strong><i className="fas fa-calendar-alt"> Release</i></strong>: {movie.release}
-                        <br/>
-                        <strong><i className="fas fa-star"> Rating</i></strong>: {movie.rating}
-                        likeCount
-                        viewCount
-                    </p>
+                    <div className="d-flex justify-content-between mt-1 mb-1">
+                        <p className="ml-1">
+                            <strong><i className="fas fa-calendar-alt"> Release</i></strong>: {movie.release}
+                            <br/>
+                            <strong><i className="fas fa-star"> Rating</i></strong>: {movie.rating}
+                        </p>
+                        <p className="mr-1">
+                            <strong><i className="fas fa-heart"> Like</i></strong>: {movie.likeCount}
+                            <br/>
+                            <strong><i className="fas fa-eye"> View</i></strong>: {movie.viewCount}
+                        </p>
+                    </div>
                     <Link to={`movie/${movie.movieId}`} className="btn btn-dark btn-block">
                         <i className="fas fa-chevron-right"></i> Play 
                     </Link>
