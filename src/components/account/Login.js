@@ -30,7 +30,8 @@ class Login extends Component {
                 else if(response.status === 200)
                     this.setState({redirect: true})
                 return response.json()
-            }).then(data => localStorage.setItem('token', data.token));
+            }).then(data => data.token ? localStorage.setItem('token', data.token) : null);
+            
     }
 
 

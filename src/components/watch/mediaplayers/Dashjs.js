@@ -8,7 +8,7 @@ class Dashjs extends Component {
 
     render() {
         return (
-            <video className="embed-responsive embed-responsive-16by9" ref={player => (this.player = player)} autoPlay="autoplay" data-setup="{}" controls />
+            <video className="embed-responsive embed-responsive-16by9" ref={player => (this.player = player)} data-setup="{}" controls />
         );
     }
 }

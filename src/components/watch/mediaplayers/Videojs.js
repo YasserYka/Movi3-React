@@ -12,7 +12,7 @@ class Videojs extends Component {
 
     config(url){
         return {
-            autoplay: true,
+            autoplay: false,
             controls: true, 
             sources: [{
                 src: url          

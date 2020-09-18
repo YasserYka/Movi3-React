@@ -18,7 +18,6 @@ export class Provider extends Component {
                 fetch(`${row.url}?page=0&size=6`)
                     .then(response => response.json())
                         .then(data => {
-                            console.log('test', data.content)
                             let newRows = [...this.state.rows]; 
                             newRows[index].movies = data.content;
                             this.setState({rows: newRows});

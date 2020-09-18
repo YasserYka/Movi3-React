@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Consumer } from '../../context';
 import Spinner from '../spinner/Spinner';
-import Movies from './Movies.js';
+import Movies from '../movies/Movies.js';
 import { Link } from 'react-router-dom';
 
 class FrontMovies extends Component {

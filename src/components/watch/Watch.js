@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Comments from './comments/Comments';
-import Videojs from './libs/Videojs';
-import Dashjs from './libs/Dashjs';
+import Videojs from './mediaplayers/Videojs';
+import Dashjs from './mediaplayers/Dashjs';
 
 class Watch extends Component {
 
