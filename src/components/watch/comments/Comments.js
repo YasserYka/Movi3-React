@@ -38,15 +38,12 @@ class Comments extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div class="btn-toolbar justify-content-between">
+                        <div class="btn-toolbar justify-content-between mb-3">
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-primary">share</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card gedf-card">
-                    <div class="card-body">
+
                         { this.state.comments.map((comment, index) => <Comment key={index} comment={comment} /> ) }
                     </div>
                 </div>

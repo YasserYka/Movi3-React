@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Profile extends Component {
 
@@ -52,9 +53,8 @@ class Profile extends Component {
                         <div className="card p-3">
                         <div className="e-navlist e-navlist--active-bg">
                             <ul className="nav">
-                            <li className="nav-item"><a className="nav-link px-2 active" href="./overview.html"><i className="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
-                            <li className="nav-item"><a className="nav-link px-2" href="./users.html"><i className="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
-                            <li className="nav-item"><a className="nav-link px-2" href="./settings.html"><i className="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
+                            <li className="nav-item"> <Link to={'/userslist'} className="nav-link px-2 active"> <i class="fa fa-users mr-1" aria-hidden="true"></i><span> Users </span></Link> </li>
+                            <li className="nav-item"> <a className="nav-link px-2" href="./settings.html"><i className="fa fa-fw fa-cog mr-1"></i><span> Settings </span></a> </li>
                             </ul>
                         </div>
                     </div>
