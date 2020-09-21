@@ -9,7 +9,8 @@ import Login from './components/account/Login';
 import Signup from './components/account/Signup';
 import Profile from './components/account/Profile';
 import BrowseMore from './components/browse/BrowseMore';
-import UserList from './components/CRUD/UserList';
+import UsersList from './components/CRUD/UsersList';
+import MoviesList from './components/CRUD/MoviesList';
 
 import { Provider } from './context';
 
@@ -31,7 +32,8 @@ class App extends Component {
                 <Route exact path="/browsemore" component={BrowseMore} />
                 <Route exact path="/advancedsearch" component={AdvancedSearch} />
                 <Route exact path="/movie/:movieId" component={Watch} />
-                <Route exact path="/userslist" component={UserList} />
+                <Route exact path="/userslist" component={UsersList} />
+                <Route exact path="/movieslist" component={MoviesList} />
               </Switch>
             </div>
           </React.Fragment>

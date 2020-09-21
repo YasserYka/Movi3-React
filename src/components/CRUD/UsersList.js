@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class List extends Component {
+class UsersList extends Component {
     
     render(){
         const users = [{userId: 1, username: "Yasser", enabled: false, email: "Yasser@gmail.com"}]
@@ -42,4 +42,4 @@ class List extends Component {
     }
 }
 
-export default List;
+export default UsersList;

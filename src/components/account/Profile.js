@@ -47,16 +47,17 @@ class Profile extends Component {
         return (
             <div className="container">
 
-                {/* Left navigation box */}
-                <div className="row flex-lg-nowrap">
-                    <div className="col-12 col-lg-auto mb-3" style={{"width": "200px"}}>
-                        <div className="card p-3">
-                        <div className="e-navlist e-navlist--active-bg">
-                            <ul className="nav">
-                            <li className="nav-item"> <Link to={'/userslist'} className="nav-link px-2 active"> <i class="fa fa-users mr-1" aria-hidden="true"></i><span> Users </span></Link> </li>
-                            <li className="nav-item"> <a className="nav-link px-2" href="./settings.html"><i className="fa fa-fw fa-cog mr-1"></i><span> Settings </span></a> </li>
-                            </ul>
-                        </div>
+            {/* Left navigation box */}
+            <div className="row flex-lg-nowrap">
+                <div className="col-12 col-lg-auto mb-3" style={{"width": "200px"}}>
+                    <div className="card p-3">
+                        <h6 className="card-title font-weight-bold">Manage</h6>
+                            <div className="e-navlist e-navlist--active-bg">
+                                <ul className="nav">
+                                    <li className="nav-item"> <Link to={'/userslist'} className="nav-link px-2 active"> <i class="fa fa-users mr-1" aria-hidden="true"></i><span> Users </span></Link> </li>
+                                    <li className="nav-item"> <Link to={'/movieslist'} className="nav-link px-2 active"> <i class="fa fa-film" aria-hidden="true"></i><span> Movies </span></Link> </li>
+                                </ul>
+                            </div>
                     </div>
                 </div>
 
@@ -250,10 +251,9 @@ class Profile extends Component {
                     </div>
 
                 </div>
-                </div>
             </div>
-        )
-    }
+        </div>
+    )}
 
 }
 
