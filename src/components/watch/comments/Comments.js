@@ -5,23 +5,52 @@ class Comments extends Component {
 
     constructor(props){
         super(props);
+        console.log('??')
 
         this.state = {
-            comments: []
+            comments: [{avatarId: 0, username: 'Yasser', date: '2020, 09', body: 'Decent work!'}]
         }
     }
 
     componentDidMount(){
-        fetch(`http://localhost:8080/api/v1/comments/movieid/${this.props.movieId}`)
-            .then(response => response.json())
-                .then(data => console.log(data));
+
     }
     
     render () {
+
+        this.state.comments.map(comment => console.log(comment));
         return (
-            <div className="container mt-3 mb-3">
-                { this.state.comments.map(comment => <Comment comment={comment} /> ) }
-            </div>
+            <React.Fragment>
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Write a comment</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                                <div class="form-group">
+                                    <label class="sr-only" for="message">post</label>
+                                    <textarea class="form-control" id="message" rows="3" placeholder="What are you thinking?"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar justify-content-between">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-primary">share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card gedf-card">
+                    <div class="card-body">
+                        { this.state.comments.map((comment, index) => <Comment key={index} comment={comment} /> ) }
+                    </div>
+                </div>
+            </React.Fragment>
         )
     }
 
