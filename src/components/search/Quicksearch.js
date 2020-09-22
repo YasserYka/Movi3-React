@@ -2,15 +2,9 @@ import React, { Component } from 'react';
 
 class Quicksearch extends Component {
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            results: [],
-            query: ''
-        }
-
-        this.onChange = this.onChange.bind(this);
+    state = {
+        results: [],
+        query: ''
     }
 
     onChange(event){
@@ -21,9 +15,9 @@ class Quicksearch extends Component {
     }
 
     fetchQuery(query){
-        fetch('http://localhost:8080/api/v1/movies/advancedsearch?title=' + query)
+        fetch('http://localhost:8080/api/v1/movies/quicksearch?title=' + query)
             .then(response => response.json())
-                .then(data => this.setState({results: data}));
+                .then(data => this.setState({results: data}) );
     }
 
     submit(){}
@@ -31,9 +25,9 @@ class Quicksearch extends Component {
     render () {
         return (
             <form className="form-inline my-2 my-lg-0">
-                <input list="results" onChange={this.onChange} name="query" className="form-control mr-sm-2" type="search" id="quicksearch" placeholder="Search By Title" />
+                <input list="results" onChange={this.onChange} name="query" className="form-control mr-sm-2" type="search" id="quicksearch" placeholder="Search By Title" autoComplete="off" />
                 <datalist id="results">
-                    { this.state.results.map(result => <option value={result.title}></option> ) }
+                    { this.state.results.map((result, index) => <option key={index} value={result.title}></option> ) }
                 </datalist>
             </form>
         )

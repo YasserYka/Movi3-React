@@ -8,7 +8,9 @@ export class Provider extends Component {
         rows: [
             {heading: 'Movies Being Watched Right Now', button: false, movies: [], icon: 'tv'},
             {url: 'http://localhost:8080/api/v1/movies/trending', heading: 'Trending', button : true, movies: [], icon: 'fire', },
-            {url: 'http://localhost:8080/api/v1/movies/mostviewed', heading: 'Most Viewed', button: true, movies: [], icon: 'eye'}
+            {url: 'http://localhost:8080/api/v1/movies/mostviewed', heading: 'Most Viewed', button: true, movies: [], icon: 'eye'},
+            {url: 'http://localhost:8080/api/v1/movies/toprated', heading: 'Top Rated', button: true, movies: [], icon: 'star'},
+            {url: 'http://localhost:8080/api/v1/movies/mostliked', heading: 'Most Liked', button: true, movies: [], icon: 'heart'},
         ]
     }
 

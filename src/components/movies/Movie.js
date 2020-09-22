@@ -23,7 +23,7 @@ const Movie = (props) => {
                             <strong><i className="fas fa-eye"> View</i></strong>: {movie.viewCount}
                         </p>
                     </div>
-                    <Link to={`movie/${movie.movieId}`} className="btn btn-dark btn-block">
+                    <Link to={{pathname: `movie/${movie.movieId}`, movie: movie}} className="btn btn-dark btn-block">
                         <i className="fas fa-chevron-right"></i> Play 
                     </Link>
                 </div>

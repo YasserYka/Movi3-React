@@ -182,9 +182,9 @@ class Profile extends Component {
                                             <div className="row">
                                             <div className="col">
                                                 <div className="form-group">
-                                                <label>Confirm <span className="d-none d-xl-inline">Password</span></label>
-                                                <input autoComplete="off" className="form-control" type="password" placeholder="••••••" /></div>
-                                            </div>
+                                                    <label>Confirm <span className="d-none d-xl-inline">Password</span></label>
+                                                    <input autoComplete="off" className="form-control" type="password" placeholder="••••••" /></div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-5 offset-sm-1 mb-3">
@@ -231,10 +231,10 @@ class Profile extends Component {
                         <div className="card mb-3">
                             <div className="card-body">
                                 <div className="px-xl-3">
-                                <button onClick={this.logout} className="btn btn-block btn-secondary">
+                                <Link to={'/'} className="btn btn-block btn-secondary">
                                     <i className="fa fa-sign-out"></i>
                                     <span>Logout</span>
-                                </button>
+                                </Link>
                                 </div>
                             </div>
                         </div>
@@ -244,12 +244,49 @@ class Profile extends Component {
                         <div className="card-body">
                             <h6 className="card-title font-weight-bold">Support</h6>
                             <p className="card-text">Get fast, free help from our friendly assistants.</p>
-                            <button type="button" className="btn btn-primary">Contact Us</button>
+                            <button data-toggle="modal" data-target="#exampleModal2" type="button" className="btn btn-primary">Contact Us</button>
                         </div>
                         </div>
                     </div>
                     </div>
 
+                                
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">New Movie</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">Your Email:</label>
+                                            <input type="text" class="form-control" id="recipient-name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Your full name:</label>
+                                            <input class="form-control" id="message-text" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Subject:</label>
+                                            <input class="form-control" id="message-text" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" id="message-text"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

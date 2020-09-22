@@ -28,11 +28,11 @@ class MoviesList extends Component {
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Rating:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
+                                        <input type="text" class="form-control" id="message-text"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Release:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
+                                        <input type="text" class="form-control" id="message-text" />
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Genres:</label>
@@ -46,7 +46,7 @@ class MoviesList extends Component {
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
+                                <button type="button" class="btn btn-primary">Create</button>
                             </div>
                         </div>
                     </div>
