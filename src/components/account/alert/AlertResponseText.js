@@ -1,7 +1,6 @@
 import React from 'react';
 
 const AlertResponseText = (props) => {
-
     if(props.responseMessage)
         return  (              
             <div className="alert alert-danger alert-dismissible fade show" role="alert">

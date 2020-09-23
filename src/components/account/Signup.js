@@ -3,16 +3,10 @@ import { Link } from 'react-router-dom';
 import AlertResponseText from './alert/AlertResponseText';
 
 class Signup extends Component {
-
-    constructor(props){
-        super(props);
-        
-        this.state = {
-            responseMessage: null,
-            redirect: false
-        }
-
-        this.submit = this.submit.bind(this);
+    
+    state = {
+        responseMessage: null,
+        redirect: false
     }
 
     submit(event){
@@ -32,7 +26,7 @@ class Signup extends Component {
             <React.Fragment>
                 <AlertResponseText responseMessage={this.state.responseMessage} />
 
-                <form onSubmit={this.submit}>
+                <form onSubmit={this.submit.bind(this)}>
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <input autoComplete="username" type="text" className="form-control" name="username" id="username" placeholder="Enter Username" />

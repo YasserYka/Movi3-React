@@ -5,15 +5,9 @@ import AlertResponseText from './alert/AlertResponseText';
 
 class Login extends Component {
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            responseMessage: null,
-            redirect: false
-        }
-        
-        this.submit = this.submit.bind(this);
+    state = {
+        responseMessage: null,
+        redirect: false
     }
 
     submit(event){
@@ -30,15 +24,14 @@ class Login extends Component {
                 else if(response.status === 200)
                     this.setState({redirect: true})
                 return response.json()
-            }).then(data => data.token ? localStorage.setItem('token', data.token) : null);
-            
+            }).then(data => data.token ? localStorage.setItem('token', data.token) : null);        
     }
 
 
     render () {
         return (
             <React.Fragment>
-                <form onSubmit={this.submit}>
+                <form onSubmit={this.submit.bind(this)}>
 
                     <AlertResponseText responseMessage={this.state.responseMessage} />
 
@@ -54,7 +47,7 @@ class Login extends Component {
 
                     <button type="submit" className="btn btn-secondary btn-block"> Login </button>
 
-                    <Link to="/signup" className="btn btn-outline-secondary btn-block"> Create Account </Link>
+                    <Link to="/signup" className="btn btn-outline-secondary btn-block"> You Don't have an account? </Link>
                 </form> 
 
                 {this.state.redirect && ( <Redirect to='/' /> )}

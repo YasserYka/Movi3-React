@@ -22,7 +22,7 @@ const Navbar = () => {
                         <Link to="/login" className="nav-link"> Login </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/mylist" className="nav-link"> My List </Link>
+                        <Link to={{pathname: '/browsemore', state: {url: 'http://localhost:8080/api/v1/movies/watchlater' , heading: "Your Movies List", icon: 'list'}}} className="nav-link"> My List </Link>
                     </li>
                 </ul>
                 <ul className="navbar-nav ">

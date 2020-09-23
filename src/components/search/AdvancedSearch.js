@@ -4,31 +4,24 @@ import Spinner from '../spinner/Spinner';
 
 class Browse extends Component {
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            title: '',
-            rating: '',
-            genre: '',
-            release: '',
-            movies: [],
-            searchtriggered: false,
-            loadmoretriggered: false,
-            loadCount: 0,
-            prarms: null,
-            totalLoad: 1
-        }
-
-        this.loadSize = 6;
-
-        this.submit = this.submit.bind(this);
-        this.loadmore = this.loadmore.bind(this);
+    state = {
+        title: '',
+        rating: '',
+        genre: '',
+        release: '',
+        movies: [],
+        searchtriggered: false,
+        loadmoretriggered: false,
+        loadCount: 0,
+        prarms: null,
+        totalLoad: 1
     }
+
+        loadSize = 6;
     
     submit(event){
-        if(event)
-            event.preventDefault();
+
+        if(event) event.preventDefault();
 
         let prarms = new URLSearchParams();
 
@@ -59,7 +52,7 @@ class Browse extends Component {
     render () {
         return (
             <React.Fragment>
-                <form onSubmit={this.submit} className="mb-5">
+                <form onSubmit={this.submit.bind(this)} className="mb-5">
                     <input onChange={(e) =>  this.setState({ title: e.target.value })} type="text" className="form-control mb-3" placeholder="Title" />
 
                     <div className="form-group">
@@ -98,7 +91,7 @@ class Browse extends Component {
 
                 { this.state.movies && this.state.movies.length === 0 ? (this.state.searchtriggered ? <Spinner /> : null) : <Movies movies={this.state.movies} /> }
 
-                { this.state.loadmoretriggered ? <Spinner /> : this.state.movies  && this.state.movies.length !== 0 && this.state.totalLoad > this.state.loadCount ? <button onClick={this.loadmore} className="btn btn-primary btn-lg btn-block mb-3"> Load More </button> : null }
+                { this.state.loadmoretriggered ? <Spinner /> : this.state.movies  && this.state.movies.length !== 0 && this.state.totalLoad > this.state.loadCount ? <button onClick={this.loadmore.bind(this)} className="btn btn-primary btn-lg btn-block mb-3"> Load More </button> : null }
             </React.Fragment>
         )
     }
