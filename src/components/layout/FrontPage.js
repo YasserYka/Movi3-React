@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
-import { Consumer } from '../../context';
-import Spinner from '../spinner/Spinner';
-import Movies from '../movies/Movies.js';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Consumer } from "../../context";
+import Spinner from "../spinner/Spinner";
+import Movies from "../movies/Movies.js";
+import { Link } from "react-router-dom";
 
 class FrontMovies extends Component {
+  render() {
+    return <React.Fragment></React.Fragment>;
+  }
+}
 
-    render () {
-        return (
+/*
             <Consumer>
                 {value => {
                         const { rows } = value;
@@ -35,9 +38,6 @@ class FrontMovies extends Component {
                     }
                 }
             </Consumer>
-        )
-    }
-}
-
+    */
 
 export default FrontMovies;
