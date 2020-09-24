@@ -13,14 +13,8 @@ import { returnErrors } from "./errorAction";
 const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
-  const token = getState().auth.token;
-
-  const headers = { "Content-type": "application/json" };
-
-  if (token) headers["Authorization"] = "Bearer " + token;
-
   fetch("http://localhost:8080/api/v1/users/profile", {
-    headers: headers,
+    headers: getTokenHeader(getState),
     credentials: "same-origin",
   })
     .then((response) => response.json())
@@ -31,6 +25,60 @@ const loadUser = () => (dispatch, getState) => {
     });
 };
 
+const signup = ({ username, email, password, confirmedPassword }) => (
+  dispatch
+) => {
+  fetch("http://localhost:8080/api/v1/users/signup", {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    credentials: "same-origin",
+    body: JSON.stringify({
+      username: username,
+      email: email,
+      password: password,
+      confirmedPassword: confirmedPassword,
+    }),
+  })
+    .then((response) =>
+      response.status === 409 || response.status === 406
+        ? response.text()
+        : null
+    )
+    .then((data) =>
+      data
+        ? dispatch({
+            type: REGISTER_SUCCESS,
+            payload: data,
+          })
+        : null
+    );
+};
+
+const login = ({ email, password }) => (dispatch) => {
+  fetch("http://localhost:8080/api/v1/users/signup", {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    credentials: "same-origin",
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  }).then((response) => console.log(response.text()));
+};
+
+const getTokenHeader = (getState) => {
+  const token = getState().auth.token;
+
+  const headers = { "Content-type": "application/json" };
+
+  if (token) headers["Authorization"] = "Bearer " + token;
+
+  return headers;
+};
+
 module.exports = {
   loadUser: loadUser,
+  getTokenHeader: getTokenHeader,
+  signup: signup,
+  login: login,
 };
