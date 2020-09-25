@@ -1,32 +1,27 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { loadUser } from "../../actions/authAction";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class Profile extends Component {
   constructor() {
     super();
 
-    this.state = {
-      profile: {
-        fullName: null,
-        username: null,
-        email: null,
-        avatarId: 0,
-        bio: null,
-        enabled: false,
-        lastSeen: null,
-        joined: null,
-        newAvatarId: null,
-      },
-    };
-
     this.changeAvatar = this.changeAvatar.bind(this);
   }
 
+  static propTypes = {
+    user: PropTypes.object,
+    loadUser: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {}
 
-  logout() {
-    if (localStorage.getItem("token") !== null)
-      localStorage.removeItem("token");
+  logout() {}
+
+  loadProfile() {
+    this.props.loadUser();
   }
 
   changeAvatar() {
@@ -36,6 +31,10 @@ class Profile extends Component {
   }
 
   render() {
+    console.log(!this.props.user, "???");
+    if (!this.props.user) this.loadProfile();
+    console.log(this.props);
+    const profile = this.props.user;
     return (
       <div className="container">
         {/* Left navigation box */}
@@ -81,7 +80,7 @@ class Profile extends Component {
                               style={{ height: "140px" }}
                             >
                               <img
-                                src={`/avatar${this.state.profile.avatarId}.png`}
+                                src={`/avatar${profile.avatarId}.png`}
                                 className="rounded-circle z-depth-0"
                                 style={{
                                   maxWidth: "150px",
@@ -95,15 +94,11 @@ class Profile extends Component {
                         <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                           <div className="text-center text-sm-left mb-2 mb-sm-0">
                             <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">
-                              {this.state.profile.fullName}
+                              {profile.fullName}
                             </h4>
-                            <p className="mb-0">
-                              {this.state.profile.username}
-                            </p>
+                            <p className="mb-0">{profile.username}</p>
                             <div className="text-muted">
-                              <small>
-                                Last seen {this.state.profile.lastSeen}
-                              </small>
+                              <small>Last seen {profile.lastSeen}</small>
                             </div>
                             <div className="mt-2">
                               <button
@@ -235,7 +230,7 @@ class Profile extends Component {
                             </div>
                           </div>
                           <div className="text-center text-sm-right">
-                            {this.state.profile.enabled ? (
+                            {profile.enabled ? (
                               <span className="badge badge-secondary">
                                 verified
                               </span>
@@ -245,9 +240,7 @@ class Profile extends Component {
                               </span>
                             )}
                             <div className="text-muted">
-                              <small>
-                                Joined {this.state.profile.lastSeen}
-                              </small>
+                              <small>Joined {profile.lastSeen}</small>
                             </div>
                           </div>
                         </div>
@@ -273,9 +266,7 @@ class Profile extends Component {
                                         className="form-control"
                                         type="text"
                                         name="name"
-                                        placeholder={
-                                          this.state.profile.fullName
-                                        }
+                                        placeholder={profile.fullName}
                                         readOnly
                                       />
                                     </div>
@@ -288,9 +279,7 @@ class Profile extends Component {
                                         className="form-control"
                                         type="text"
                                         name="username"
-                                        placeholder={
-                                          this.state.profile.username
-                                        }
+                                        placeholder={profile.username}
                                         readOnly
                                       />
                                     </div>
@@ -304,7 +293,7 @@ class Profile extends Component {
                                         autoComplete="off"
                                         className="form-control"
                                         type="text"
-                                        placeholder={this.state.profile.email}
+                                        placeholder={profile.email}
                                         readOnly
                                       />
                                     </div>
@@ -317,7 +306,7 @@ class Profile extends Component {
                                       <textarea
                                         className="form-control"
                                         rows="5"
-                                        placeholder={this.state.profile.bio}
+                                        placeholder={profile.bio}
                                         readOnly
                                       ></textarea>
                                     </div>
@@ -565,4 +554,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { loadUser })(Profile);

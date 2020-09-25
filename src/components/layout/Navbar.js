@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfileNav from '../account/ProfileNav';
 
 import Quicksearch from '../search/Quicksearch';
 
@@ -26,15 +27,7 @@ const Navbar = () => {
                     </li>
                 </ul>
                 <ul className="navbar-nav ">
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="/avatar0.png" className="rounded-circle z-depth-0" width="40" height="40" alt="avatar" />
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-lg-right dropdown-secondary">
-                            <Link to="/profile" className="dropdown-item"> View Profile </Link>
-                            <a className="dropdown-item" href="#">Logout</a>
-                        </div>
-                    </li>
+                    <ProfileNav />
                 </ul>
                 <Quicksearch />
             </div>

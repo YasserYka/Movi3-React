@@ -18,7 +18,10 @@ const loadUser = () => (dispatch, getState) => {
     credentials: "same-origin",
   })
     .then((response) => response.json())
-    .then((data) => dispatch({ type: USER_LOADED, payload: data }))
+    .then((data) => {
+      console.log("loaded!");
+      dispatch({ type: USER_LOADED, payload: data });
+    })
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: AUTH_ERROR });
@@ -54,16 +57,24 @@ const signup = ({ username, email, password, confirmedPassword }) => (
     );
 };
 
-const login = ({ email, password }) => (dispatch) => {
-  fetch("http://localhost:8080/api/v1/users/signup", {
+const login = ({ username, password }) => (dispatch) => {
+  fetch("http://localhost:8080/api/v1/users/login", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
     credentials: "same-origin",
     body: JSON.stringify({
-      email: email,
+      username: username,
       password: password,
     }),
-  }).then((response) => console.log(response.text()));
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: data,
+      });
+      loadUser();
+    });
 };
 
 const getTokenHeader = (getState) => {

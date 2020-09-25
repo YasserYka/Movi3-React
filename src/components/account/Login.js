@@ -12,6 +12,15 @@ class Login extends Component {
     redirect: false,
   };
 
+  componentDidUpdate(preProps) {
+    const { error } = this.props;
+
+    if (error !== preProps.error)
+      if (error.id === "LOGIN_FAIL")
+        this.setState({ responseMessage: error.message.message });
+      else this.setState({ responseMessage: null });
+  }
+
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
@@ -81,4 +90,4 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { login });
+export default connect(mapStateToProps, { login })(Login);
