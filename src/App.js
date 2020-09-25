@@ -14,12 +14,8 @@ import UsersList from "./components/CRUD/UsersList";
 import MoviesList from "./components/CRUD/MoviesList";
 import { Provider } from "react-redux";
 import store from "./store";
-import { loadUser } from "./actions/authAction";
 
 class App extends Component {
-  componentDidMount() {
-    store.dispatch(loadUser());
-  }
 
   render() {
     return (

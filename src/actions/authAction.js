@@ -10,6 +10,10 @@ import {
 } from "./types";
 import { returnErrors } from "./errorAction";
 
+const logout = () => dispatch => {
+
+}
+
 const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
@@ -28,7 +32,7 @@ const loadUser = () => (dispatch, getState) => {
     });
 };
 
-const signup = ({ username, email, password, confirmedPassword }) => (
+const signup = ({ username, email, password, confirmedPassword }) => (dispatch) => (
   dispatch
 ) => {
   fetch("http://localhost:8080/api/v1/users/signup", {

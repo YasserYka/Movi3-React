@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { loadUser } from "../../actions/authAction";
+import { logout } from "../../actions/authAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -13,16 +13,12 @@ class Profile extends Component {
 
   static propTypes = {
     user: PropTypes.object,
-    loadUser: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
   };
 
   componentDidMount() {}
 
   logout() {}
-
-  loadProfile() {
-    this.props.loadUser();
-  }
 
   changeAvatar() {
     this.setState({
@@ -31,10 +27,7 @@ class Profile extends Component {
   }
 
   render() {
-    console.log(!this.props.user, "???");
-    if (!this.props.user) this.loadProfile();
-    console.log(this.props);
-    const profile = this.props.user;
+
     return (
       <div className="container">
         {/* Left navigation box */}
@@ -80,7 +73,7 @@ class Profile extends Component {
                               style={{ height: "140px" }}
                             >
                               <img
-                                src={`/avatar${profile.avatarId}.png`}
+                                src={`/avatar${this.props.user.avatarId}.png`}
                                 className="rounded-circle z-depth-0"
                                 style={{
                                   maxWidth: "150px",
@@ -94,11 +87,11 @@ class Profile extends Component {
                         <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                           <div className="text-center text-sm-left mb-2 mb-sm-0">
                             <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">
-                              {profile.fullName}
+                              {this.props.user.fullName}
                             </h4>
-                            <p className="mb-0">{profile.username}</p>
+                            <p className="mb-0">{this.props.user.username}</p>
                             <div className="text-muted">
-                              <small>Last seen {profile.lastSeen}</small>
+                              <small>Last seen {this.props.user.lastSeen}</small>
                             </div>
                             <div className="mt-2">
                               <button
@@ -230,7 +223,7 @@ class Profile extends Component {
                             </div>
                           </div>
                           <div className="text-center text-sm-right">
-                            {profile.enabled ? (
+                            {this.props.user.enabled ? (
                               <span className="badge badge-secondary">
                                 verified
                               </span>
@@ -240,7 +233,7 @@ class Profile extends Component {
                               </span>
                             )}
                             <div className="text-muted">
-                              <small>Joined {profile.lastSeen}</small>
+                              <small>Joined {this.props.user.lastSeen}</small>
                             </div>
                           </div>
                         </div>
@@ -266,7 +259,7 @@ class Profile extends Component {
                                         className="form-control"
                                         type="text"
                                         name="name"
-                                        placeholder={profile.fullName}
+                                        placeholder={this.props.user.fullName}
                                         readOnly
                                       />
                                     </div>
@@ -279,7 +272,7 @@ class Profile extends Component {
                                         className="form-control"
                                         type="text"
                                         name="username"
-                                        placeholder={profile.username}
+                                        placeholder={this.props.user.username}
                                         readOnly
                                       />
                                     </div>
@@ -293,7 +286,7 @@ class Profile extends Component {
                                         autoComplete="off"
                                         className="form-control"
                                         type="text"
-                                        placeholder={profile.email}
+                                        placeholder={this.props.user.email}
                                         readOnly
                                       />
                                     </div>
@@ -306,7 +299,7 @@ class Profile extends Component {
                                       <textarea
                                         className="form-control"
                                         rows="5"
-                                        placeholder={profile.bio}
+                                        placeholder={this.props.user.bio}
                                         readOnly
                                       ></textarea>
                                     </div>
@@ -558,4 +551,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { loadUser })(Profile);
+export default connect(mapStateToProps, { logout })(Profile);
