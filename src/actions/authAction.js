@@ -14,27 +14,8 @@ const logout = () => dispatch => {
 
 }
 
-const loadUser = () => (dispatch, getState) => {
-  dispatch({ type: USER_LOADING });
 
-  fetch("http://localhost:8080/api/v1/users/profile", {
-    headers: getTokenHeader(getState),
-    credentials: "same-origin",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("loaded!");
-      dispatch({ type: USER_LOADED, payload: data });
-    })
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({ type: AUTH_ERROR });
-    });
-};
-
-const signup = ({ username, email, password, confirmedPassword }) => (dispatch) => (
-  dispatch
-) => {
+const signup = ({ username, email, password, confirmedPassword }) => dispatch => {
   fetch("http://localhost:8080/api/v1/users/signup", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -61,7 +42,8 @@ const signup = ({ username, email, password, confirmedPassword }) => (dispatch) 
     );
 };
 
-const login = ({ username, password }) => (dispatch) => {
+const login = ({ username, password }) => dispatch => {
+
   fetch("http://localhost:8080/api/v1/users/login", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -77,11 +59,29 @@ const login = ({ username, password }) => (dispatch) => {
         type: LOGIN_SUCCESS,
         payload: data,
       });
-      loadUser();
+
+      dispatch(loadUser());
     });
 };
 
-const getTokenHeader = (getState) => {
+const loadUser = () => (dispatch, getState) => {
+
+  dispatch({ type: USER_LOADING });
+  fetch("http://localhost:8080/api/v1/users/profile", {
+    headers: getTokenHeader(getState),
+    credentials: "same-origin",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      dispatch({ type: USER_LOADED, payload: data });
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({ type: AUTH_ERROR });
+    });
+};
+
+const getTokenHeader = getState => {
   const token = getState().auth.token;
 
   const headers = { "Content-type": "application/json" };
