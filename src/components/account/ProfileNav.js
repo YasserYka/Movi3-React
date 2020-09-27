@@ -30,6 +30,6 @@ class ProfileNav extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ user: state.auth.user });
+const mapStateToProps = (state) => ({ user: state.user.profile });
 
 export default connect(mapStateToProps)(ProfileNav);

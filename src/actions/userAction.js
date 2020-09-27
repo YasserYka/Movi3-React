@@ -85,7 +85,7 @@ const login = ({ username, password }) => dispatch => {
 };
 
 const getTokenHeader = getState => {
-  const token = getState().auth.token;
+  const token = getState().user.token;
 
   const headers = { "Content-type": "application/json" };
 

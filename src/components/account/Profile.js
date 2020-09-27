@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { logout, loadUser } from "../../actions/authAction";
+import { logout, loadUser } from "../../actions/userAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -10,13 +10,13 @@ class Profile extends Component {
 
     this.state = {
       user: {
-        avatarId: 1,
+        avatarId: -1,
         bio: "Bio",
-        creationDate: new Date().toISOString,
+        creationDate: "2020/09/09",
         email: "Email",
         enabled: false,
         fullName: "Full Name",
-        lastSeen: new Date().toISOString,
+        lastSeen: "2020/09/09",
         username: "Username"
       }
     }
@@ -27,14 +27,13 @@ class Profile extends Component {
 
   static propTypes = {
     user: PropTypes.object,
-    logout: PropTypes.func.isRequired,
     loadUser: PropTypes.func.isRequired
   };
 
 
 
   componentDidMount(prevState) {
-    this.setState({user: this.props.user})
+    this.setState({user: this.props.profile})
   }
 
   logout() {}
@@ -84,7 +83,7 @@ class Profile extends Component {
                     
                     <Link to={"/userslist"} className="nav-link px-2 active">
                       
-                      <i class="fa fa-users mr-1" aria-hidden="true"></i>
+                      <i className="fa fa-users mr-1" aria-hidden="true"></i>
                       <span> Users </span>
                     </Link>
                   </li>
@@ -92,7 +91,7 @@ class Profile extends Component {
                     
                     <Link to={"/movieslist"} className="nav-link px-2 active">
                       
-                      <i class="fa fa-film" aria-hidden="true"></i>
+                      <i className="fa fa-film" aria-hidden="true"></i>
                       <span> Movies </span>
                     </Link>
                   </li>
@@ -146,32 +145,32 @@ class Profile extends Component {
                                 Change Picture
                               </button>
                               <div
-                                class="modal fade"
+                                className="modal fade"
                                 id="exampleModal"
-                                tabindex="-1"
+                                tabIndex="-1"
                                 role="dialog"
                                 aria-labelledby="exampleModalLabel"
                                 aria-hidden="true"
                               >
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
+                                <div className="modal-dialog" role="document">
+                                  <div className="modal-content">
+                                    <div className="modal-header">
                                       <h5
-                                        class="modal-title"
+                                        className="modal-title"
                                         id="exampleModalLabel"
                                       >
                                         Pick a picutre
                                       </h5>
                                       <button
                                         type="button"
-                                        class="close"
+                                        className="close"
                                         data-dismiss="modal"
                                         aria-label="Close"
                                       >
                                         <span aria-hidden="true">&times;</span>
                                       </button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div className="modal-body">
                                       <div className="container">
                                         <div className="col mt-3 mb-3">
                                           <img
@@ -204,7 +203,7 @@ class Profile extends Component {
                                         <div className="col">
                                           <img
                                             src={`/avatar2.png`}
-                                            class=""
+                                            className=""
                                             data-dismiss="modal"
                                             data-img-id="2"
                                             onClick={this.changeAvatar}
@@ -518,72 +517,72 @@ class Profile extends Component {
             </div>
 
             <div
-              class="modal fade"
+              className="modal fade"
               id="exampleModal2"
-              tabindex="-1"
+              tabIndex="-1"
               role="dialog"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">
                       New Movie
                     </h5>
                     <button
                       type="button"
-                      class="close"
+                      className="close"
                       data-dismiss="modal"
                       aria-label="Close"
                     >
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <form>
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">
+                      <div className="form-group">
+                        <label htmlFor="recipient-name" className="col-form-label">
                           Your Email:
                         </label>
                         <input
                           type="text"
-                          class="form-control"
+                          className="form-control"
                           id="recipient-name"
                         />
                       </div>
-                      <div class="form-group">
-                        <label for="message-text" class="col-form-label">
+                      <div className="form-group">
+                        <label htmlFor="message-text" className="col-form-label">
                           Your full name:
                         </label>
-                        <input class="form-control" id="message-text" />
+                        <input className="form-control" id="message-text" />
                       </div>
-                      <div class="form-group">
-                        <label for="message-text" class="col-form-label">
+                      <div className="form-group">
+                        <label htmlFor="message-text" className="col-form-label">
                           Subject:
                         </label>
-                        <input class="form-control" id="message-text" />
+                        <input className="form-control" id="message-text" />
                       </div>
-                      <div class="form-group">
-                        <label for="message-text" class="col-form-label">
+                      <div className="form-group">
+                        <label htmlFor="message-text" className="col-form-label">
                           Message:
                         </label>
                         <textarea
-                          class="form-control"
+                          className="form-control"
                           id="message-text"
                         ></textarea>
                       </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
+                  <div className="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      className="btn btn-secondary"
                       data-dismiss="modal"
                     >
                       Close
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" className="btn btn-primary">
                       Send
                     </button>
                   </div>
@@ -598,7 +597,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user,
+  profile: state.user.profile,
 });
 
 export default connect(mapStateToProps, { logout, loadUser })(Profile);

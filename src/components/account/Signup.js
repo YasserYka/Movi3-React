@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { signup } from "../../actions/authAction";
+import { signup } from "../../actions/userAction";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { clearErrors } from '../../actions/errorAction';
@@ -127,7 +127,7 @@ class Signup extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isAuthenticated: state.user.isAuthenticated,
   error: state.error,
 });
 
