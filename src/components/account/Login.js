@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
-import AlertResponseText from "./alert/AlertResponseText";
 import { login } from "../../actions/authAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { clearErrors } from '../../actions/errorAction';
 
 class Login extends Component {
   
@@ -13,23 +13,23 @@ class Login extends Component {
     redirect: false,
   };
 
-  componentDidUpdate(preProps) {
-    const { error } = this.props;
-
-    if (error !== preProps.error)
-      if (error.id === "LOGIN_FAIL")
-        this.setState({ responseMessage: error.message.message });
-      else this.setState({ responseMessage: null });
-  }
-
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
   };
+
+  componentDidUpdate(preProps) {
+    if (this.props.error.message !== this.state.responseMessage)
+      this.setState({responseMessage: this.props.error.message});
+  }
 
   submit(event) {
     if (event) event.preventDefault();
+
+    this.setState({ responseMessage: null });
+    this.props.clearErrors();
 
     this.props.login({
       username: event.target.username.value,
@@ -37,11 +37,29 @@ class Login extends Component {
     });
   }
 
+  clearError(){
+    this.setState({ responseMessage: null });
+    this.props.clearErrors();
+  }
+  
+  alertMessage(){
+    return (
+      <div className="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{this.state.responseMessage}</strong>
+        <button onClick={this.clearError.bind(this)} type="button" className="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    )
+  }
+
   render() {
     return (
       <React.Fragment>
+
+        { this.state.responseMessage ? this.alertMessage() : null }
+
         <form onSubmit={this.submit.bind(this)}>
-          <AlertResponseText responseMessage={this.state.responseMessage} />
 
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -70,13 +88,11 @@ class Login extends Component {
           </div>
 
           <button type="submit" className="btn btn-secondary btn-block">
-            {" "}
-            Login{" "}
+            Login
           </button>
 
           <Link to="/signup" className="btn btn-outline-secondary btn-block">
-            {" "}
-            You Don't have an account?{" "}
+            You Don't have an account?
           </Link>
         </form>
 
@@ -91,4 +107,4 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, clearErrors })(Login);

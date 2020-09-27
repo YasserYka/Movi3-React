@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import AlertResponseText from "./alert/AlertResponseText";
 import { signup } from "../../actions/authAction";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
@@ -28,6 +27,9 @@ class Signup extends Component {
   submit(event) {
     if (event) event.preventDefault();
     
+    this.setState({ responseMessage: null });
+    this.props.clearErrors();
+
     this.props.signup({
       username: event.target.username.value,
       email: event.target.email.value,
@@ -36,9 +38,9 @@ class Signup extends Component {
     });
   }
 
-  clearError () {
-    this.props.clearErrors();
+  clearError(){
     this.setState({ responseMessage: null });
+    this.props.clearErrors();
   }
 
   alertMessage(){
@@ -59,6 +61,7 @@ class Signup extends Component {
         { this.state.responseMessage ? this.alertMessage() : null }
 
         <form onSubmit={this.submit.bind(this)}>
+          
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input

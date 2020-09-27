@@ -33,16 +33,56 @@ const signup = ({ username, email, password, confirmedPassword }) => dispatch =>
   })
   .then((data) => { 
     dispatch({ type: REGISTER_SUCCESS, payload: data });
+    dispatch(loadUser());
   })
   .catch(response => {
+
     response.text().then(message => {
-      dispatch(returnErrors(message, 'REGISTER_FAIL'));
+      dispatch(returnErrors(message));
     });
 
     dispatch({ type: REGISTER_FAIL });
   });
 };
 
+const login = ({ username, password }) => dispatch => {
+
+  fetch("http://localhost:8080/api/v1/users/login", {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    credentials: "same-origin",
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    }),
+  })
+  .then((response) => {
+
+    if (response.ok)
+      return response.json();
+
+    throw response;
+  })
+  .then((data) => {
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: data,
+    });
+
+    dispatch(loadUser());
+  }) 
+  .catch(response => {
+    if(response.status == 403)
+      dispatch(returnErrors("Wrong Username or Password"));
+    else
+      response.text().then(message => {
+        dispatch(returnErrors(message));
+      });
+
+    dispatch({ type: LOGIN_FAIL });
+  });
+
+};
 
 const getTokenHeader = getState => {
   const token = getState().auth.token;
@@ -68,29 +108,6 @@ const loadUser = () => (dispatch, getState) => {
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: AUTH_ERROR });
-    });
-
-};
-
-const login = ({ username, password }) => dispatch => {
-
-  fetch("http://localhost:8080/api/v1/users/login", {
-    method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
-    credentials: "same-origin",
-    body: JSON.stringify({
-      username: username,
-      password: password,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: data,
-      });
-
-      dispatch(loadUser());
     });
 
 };
