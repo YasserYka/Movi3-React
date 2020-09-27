@@ -9,7 +9,6 @@ class Signup extends Component {
 
   state = {
     responseMessage: null,
-    redirect: false,
   };
 
   static propTypes = {
@@ -22,6 +21,11 @@ class Signup extends Component {
   componentDidUpdate(prevProps) {
     if(this.props.error.message !== this.state.responseMessage)
       this.setState({responseMessage: this.props.error.message});
+
+
+    if(this.props.isAuthenticated)
+      this.props.history.push('/');
+
   }
 
   submit(event) {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router";
+import { browserHistory } from 'react-router';
 import { login } from "../../actions/authAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -10,7 +10,6 @@ class Login extends Component {
   
   state = {
     responseMessage: null,
-    redirect: false,
   };
 
   static propTypes = {
@@ -23,6 +22,10 @@ class Login extends Component {
   componentDidUpdate(preProps) {
     if (this.props.error.message !== this.state.responseMessage)
       this.setState({responseMessage: this.props.error.message});
+
+      if(this.props.isAuthenticated)
+        this.props.history.push('/');
+
   }
 
   submit(event) {
@@ -96,7 +99,6 @@ class Login extends Component {
           </Link>
         </form>
 
-        {this.state.redirect && <Redirect to="/" />}
       </React.Fragment>
     );
   }

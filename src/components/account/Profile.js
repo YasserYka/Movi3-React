@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/authAction";
+import { logout, loadUser } from "../../actions/authAction";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -8,22 +8,65 @@ class Profile extends Component {
   constructor() {
     super();
 
+    this.state = {
+      user: {
+        avatarId: 1,
+        bio: "Bio",
+        creationDate: new Date().toISOString,
+        email: "Email",
+        enabled: false,
+        fullName: "Full Name",
+        lastSeen: new Date().toISOString,
+        username: "Username"
+      }
+    }
+
     this.changeAvatar = this.changeAvatar.bind(this);
+    this.changeHandler = this.changeHandler.bind(this);
   }
 
   static propTypes = {
     user: PropTypes.object,
     logout: PropTypes.func.isRequired,
+    loadUser: PropTypes.func.isRequired
   };
 
-  componentDidMount() {}
+
+
+  componentDidMount(prevState) {
+    this.setState({user: this.props.user})
+  }
 
   logout() {}
 
-  changeAvatar() {
-    this.setState({
-      profile: { avatarId: event.target.getAttribute("data-img-id") },
-    });
+  changeAvatar(event) {
+    if (event) event.preventDefault();
+
+    const newAvatarId = parseInt(event.target.getAttribute("data-img-id"));
+
+    this.setState(prevState => ({
+      user: {
+        ...prevState.user,
+        avatarId: newAvatarId
+      }
+    }));
+  }
+
+  changeHandler(event){
+    if (event) event.preventDefault();
+
+    const { name, value } = event.target;
+
+    this.setState(prevState => ({
+      user: {
+        ...prevState.user,
+        [name]: value
+      }
+    }));
+  }
+
+  submitChanges(){
+    
   }
 
   render() {
@@ -38,20 +81,20 @@ class Profile extends Component {
               <div className="e-navlist e-navlist--active-bg">
                 <ul className="nav">
                   <li className="nav-item">
-                    {" "}
+                    
                     <Link to={"/userslist"} className="nav-link px-2 active">
-                      {" "}
+                      
                       <i class="fa fa-users mr-1" aria-hidden="true"></i>
                       <span> Users </span>
-                    </Link>{" "}
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    {" "}
+                    
                     <Link to={"/movieslist"} className="nav-link px-2 active">
-                      {" "}
+                      
                       <i class="fa fa-film" aria-hidden="true"></i>
                       <span> Movies </span>
-                    </Link>{" "}
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -73,7 +116,7 @@ class Profile extends Component {
                               style={{ height: "140px" }}
                             >
                               <img
-                                src={`/avatar${this.props.user.avatarId}.png`}
+                                src={`/avatar${this.state.user.avatarId}.png`}
                                 className="rounded-circle z-depth-0"
                                 style={{
                                   maxWidth: "150px",
@@ -87,11 +130,11 @@ class Profile extends Component {
                         <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                           <div className="text-center text-sm-left mb-2 mb-sm-0">
                             <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">
-                              {this.props.user.fullName}
+                              {this.state.user.fullName}
                             </h4>
-                            <p className="mb-0">{this.props.user.username}</p>
+                            <p className="mb-0">{this.state.user.username}</p>
                             <div className="text-muted">
-                              <small>Last seen {this.props.user.lastSeen}</small>
+                              <small>Last seen {this.state.user.lastSeen}</small>
                             </div>
                             <div className="mt-2">
                               <button
@@ -223,17 +266,17 @@ class Profile extends Component {
                             </div>
                           </div>
                           <div className="text-center text-sm-right">
-                            {this.props.user.enabled ? (
+                            {this.state.user.enabled ? (
                               <span className="badge badge-secondary">
-                                verified
+                                Verified
                               </span>
                             ) : (
                               <span className="badge badge-danger">
-                                not verified
+                                Not Verified
                               </span>
                             )}
                             <div className="text-muted">
-                              <small>Joined {this.props.user.lastSeen}</small>
+                              <small>Joined {this.state.user.lastSeen}</small>
                             </div>
                           </div>
                         </div>
@@ -258,9 +301,9 @@ class Profile extends Component {
                                         autoComplete="off"
                                         className="form-control"
                                         type="text"
-                                        name="name"
-                                        placeholder={this.props.user.fullName}
-                                        readOnly
+                                        name="fullName"
+                                        onChange={this.changeHandler}
+                                        placeholder={this.state.user.fullName}
                                       />
                                     </div>
                                   </div>
@@ -272,8 +315,8 @@ class Profile extends Component {
                                         className="form-control"
                                         type="text"
                                         name="username"
-                                        placeholder={this.props.user.username}
-                                        readOnly
+                                        onChange={this.changeHandler}
+                                        placeholder={this.state.user.username}
                                       />
                                     </div>
                                   </div>
@@ -286,7 +329,9 @@ class Profile extends Component {
                                         autoComplete="off"
                                         className="form-control"
                                         type="text"
-                                        placeholder={this.props.user.email}
+                                        name="email"
+                                        onChange={this.changeHandler}
+                                        placeholder={this.state.user.email}
                                         readOnly
                                       />
                                     </div>
@@ -299,8 +344,9 @@ class Profile extends Component {
                                       <textarea
                                         className="form-control"
                                         rows="5"
-                                        placeholder={this.props.user.bio}
-                                        readOnly
+                                        name="bio"
+                                        onChange={this.changeHandler}
+                                        placeholder={this.state.user.bio}
                                       ></textarea>
                                     </div>
                                   </div>
@@ -321,6 +367,7 @@ class Profile extends Component {
                                         className="form-control"
                                         type="password"
                                         placeholder="••••••"
+                                        readOnly
                                       />
                                     </div>
                                   </div>
@@ -334,6 +381,7 @@ class Profile extends Component {
                                         className="form-control"
                                         type="password"
                                         placeholder="••••••"
+                                        readOnly
                                       />
                                     </div>
                                   </div>
@@ -342,7 +390,7 @@ class Profile extends Component {
                                   <div className="col">
                                     <div className="form-group">
                                       <label>
-                                        Confirm{" "}
+                                        Confirm
                                         <span className="d-none d-xl-inline">
                                           Password
                                         </span>
@@ -352,6 +400,7 @@ class Profile extends Component {
                                         className="form-control"
                                         type="password"
                                         placeholder="••••••"
+                                        readOnly
                                       />
                                     </div>
                                   </div>
@@ -420,6 +469,7 @@ class Profile extends Component {
                                 <button
                                   className="btn btn-primary"
                                   type="submit"
+                                  onClick={this.submitChanges.bind(this)}
                                 >
                                   Save Changes
                                 </button>
@@ -551,4 +601,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { logout })(Profile);
+export default connect(mapStateToProps, { logout, loadUser })(Profile);
