@@ -14,7 +14,8 @@ class Browse extends Component {
         loadmoretriggered: false,
         loadCount: 0,
         prarms: null,
-        totalLoad: 1
+        totalLoad: 1,
+        last: false
     }
 
         loadSize = 6;
@@ -36,17 +37,18 @@ class Browse extends Component {
 
         this.setState({prarms: prarms, loadCount: 0});
 
-        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount}&size=6${prarms.toString().length !== 0 ? `&${prarms.toString()}` : ''}`)
+
+        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=0&size=6${prarms.toString().length !== 0 ? `&${prarms.toString()}` : ''}`)
             .then(response => response.json())
-                .then(data => {console.log(data); this.setState({totalLoad: data.totalPages, loadCount: this.state.loadCount + 1, movies: data.content, searchtriggered: true, loadmoretriggered: false})});
+                .then(data => this.setState({last: data.last, totalLoad: data.totalPages, loadCount: this.state.loadCount, movies: data.content, searchtriggered: true, loadmoretriggered: false}));
     }
 
     loadmore(){
         this.setState({loadmoretriggered: true});
 
-        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount}&size=6${this.state.prarms.toString().length !== 0 ? `&${this.state.prarms.toString()}` : ''}`)
+        fetch(`http://localhost:8080/api/v1/movies/advancedsearch?page=${this.state.loadCount+1}&size=6${this.state.prarms.toString().length !== 0 ? `&${this.state.prarms.toString()}` : ''}`)
             .then(response => response.json())
-                .then(data => this.setState({movies: this.state.movies.concat(data.content), loadmoretriggered: false, loadCount: this.state.loadCount + 1}));
+                .then(data => this.setState({last: data.last, movies: this.state.movies.concat(data.content), loadmoretriggered: false, loadCount: this.state.loadCount + 1}));
     }
 
     render () {
@@ -91,7 +93,7 @@ class Browse extends Component {
 
                 { this.state.movies && this.state.movies.length === 0 ? (this.state.searchtriggered ? <Spinner /> : null) : <Movies movies={this.state.movies} /> }
 
-                { this.state.loadmoretriggered ? <Spinner /> : this.state.movies  && this.state.movies.length !== 0 && this.state.totalLoad > this.state.loadCount ? <button onClick={this.loadmore.bind(this)} className="btn btn-primary btn-lg btn-block mb-3"> Load More </button> : null }
+                { this.state.loadmoretriggered ? <Spinner /> : this.state.movies  && this.state.movies.length !== 0 && this.state.totalLoad > this.state.loadCount ? ( !this.state.last ? <button onClick={this.loadmore.bind(this)} className="btn btn-primary btn-lg btn-block mb-3"> Load More </button> : null ) : null }
             </React.Fragment>
         )
     }

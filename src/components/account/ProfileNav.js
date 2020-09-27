@@ -10,8 +10,12 @@ class ProfileNav extends Component {
 
     static propTypes = { user: PropTypes.object };
 
+    componentDidMount(){
+        this.setState({ avatarId: this.props.user.avatarId });
+    }
+
     componentDidUpdate(prevProps){
-        if(prevProps.user.avatarId !== this.props.user.avatarId)
+        if(this.state.avatarId !== this.props.user.avatarId)
             this.setState({ avatarId: this.props.user.avatarId });
     }
 
