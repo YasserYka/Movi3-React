@@ -4,6 +4,7 @@ import AlertResponseText from "./alert/AlertResponseText";
 import { signup } from "../../actions/authAction";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import { clearErrors } from '../../actions/errorAction';
 
 class Signup extends Component {
 
@@ -16,10 +17,15 @@ class Signup extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     signup: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
   };
 
-  submit(event) {
+  componentDidUpdate(prevProps) {
+    if(this.props.error.message !== this.state.responseMessage)
+      this.setState({responseMessage: this.props.error.message});
+  }
 
+  submit(event) {
     if (event) event.preventDefault();
     
     this.props.signup({
@@ -28,13 +34,29 @@ class Signup extends Component {
       password: event.target.password1.value,
       confirmedPassword: event.target.password2.value,
     });
+  }
 
+  clearError () {
+    this.props.clearErrors();
+    this.setState({ responseMessage: null });
+  }
+
+  alertMessage(){
+    return (
+      <div className="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{this.state.responseMessage}</strong>
+        <button onClick={this.clearError.bind(this)} type="button" className="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    )
   }
 
   render() {
     return (
       <React.Fragment>
-        <AlertResponseText responseMessage={this.state.responseMessage} />
+
+        { this.state.responseMessage ? this.alertMessage() : null }
 
         <form onSubmit={this.submit.bind(this)}>
           <div className="form-group">
@@ -102,4 +124,4 @@ const mapStateToProps = (state) => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, { signup })(Signup);
+export default connect(mapStateToProps, { signup, clearErrors })(Signup);

@@ -29,12 +29,18 @@ const signup = ({ username, email, password, confirmedPassword }) => dispatch =>
     if (response.ok)
       return response.json();
 
-    response.text().then(text => { throw Error(text); })
+    throw response;
   })
   .then((data) => { 
     dispatch({ type: REGISTER_SUCCESS, payload: data });
   })
-  .catch(err => console.log(err));
+  .catch(response => {
+    response.text().then(message => {
+      dispatch(returnErrors(message, 'REGISTER_FAIL'));
+    });
+
+    dispatch({ type: REGISTER_FAIL });
+  });
 };
 
 

@@ -1,9 +1,9 @@
 import { GET_ERRORS, CLEAR_ERRORS } from "./types";
 
-const returnErrors = (message, status, id = null) => {
+const returnErrors = (message, id = null) => {
   return {
     type: GET_ERRORS,
-    payload: { message, status, id },
+    payload: { message, id },
   };
 };
 

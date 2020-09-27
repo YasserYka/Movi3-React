@@ -49,7 +49,9 @@ export default function (state = initialState, action) {
       return {
         ...state,
         token: null,
-        user: null,
+        user: {
+          avatarId: -1
+        },
         isAuthenticated: false,
         isLoading: false,
       };
