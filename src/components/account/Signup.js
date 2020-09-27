@@ -2,36 +2,33 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AlertResponseText from "./alert/AlertResponseText";
 import { signup } from "../../actions/authAction";
+import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 
 class Signup extends Component {
+
   state = {
     responseMessage: null,
     redirect: false,
   };
 
-  submit(event) {
-    if (event) event.preventDefault();
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+    signup: PropTypes.func.isRequired,
+  };
 
-    fetch("http://localhost:8080/api/v1/users/signup", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      credentials: "same-origin",
-      body: JSON.stringify({
-        username: event.target.username.value,
-        email: event.target.email.value,
-        password: event.target.password1.value,
-        confirmedPassword: event.target.password2.value,
-      }),
-    })
-      .then((response) =>
-        response.status === 409 || response.status === 406
-          ? response.text()
-          : null
-      )
-      .then((data) => (data ? this.setState({ responseMessage: data }) : null));
+  submit(event) {
+
+    if (event) event.preventDefault();
+    
+    this.props.signup({
+      username: event.target.username.value,
+      email: event.target.email.value,
+      password: event.target.password1.value,
+      confirmedPassword: event.target.password2.value,
+    });
+
   }
 
   render() {
@@ -88,12 +85,11 @@ class Signup extends Component {
             />
           </div>
           <button type="submit" className="btn btn-secondary btn-block">
-            {" "}
-            Signup{" "}
+            
+            Signup
           </button>
           <Link to="/login" className="btn btn-outline-secondary btn-block">
-            {" "}
-            Already Have An Account?{" "}
+            Already Have An Account?
           </Link>
         </form>
       </React.Fragment>
@@ -101,4 +97,9 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.error,
+});
+
+export default connect(mapStateToProps, { signup })(Signup);

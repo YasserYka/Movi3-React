@@ -10,12 +10,10 @@ import {
 } from "./types";
 import { returnErrors } from "./errorAction";
 
-const logout = () => dispatch => {
-
-}
-
+const logout = () => dispatch => {}
 
 const signup = ({ username, email, password, confirmedPassword }) => dispatch => {
+
   fetch("http://localhost:8080/api/v1/users/signup", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -27,19 +25,45 @@ const signup = ({ username, email, password, confirmedPassword }) => dispatch =>
       confirmedPassword: confirmedPassword,
     }),
   })
-    .then((response) =>
-      response.status === 409 || response.status === 406
-        ? response.text()
-        : null
-    )
-    .then((data) =>
-      data
-        ? dispatch({
-            type: REGISTER_SUCCESS,
-            payload: data,
-          })
-        : null
-    );
+  .then(response => {
+    if (response.ok)
+      return response.json();
+
+    response.text().then(text => { throw Error(text); })
+  })
+  .then((data) => { 
+    dispatch({ type: REGISTER_SUCCESS, payload: data });
+  })
+  .catch(err => console.log(err));
+};
+
+
+const getTokenHeader = getState => {
+  const token = getState().auth.token;
+
+  const headers = { "Content-type": "application/json" };
+
+  if (token) headers["Authorization"] = "Bearer " + token;
+
+  return headers;
+};
+
+const loadUser = () => (dispatch, getState) => {
+
+  dispatch({ type: USER_LOADING });
+  fetch("http://localhost:8080/api/v1/users/profile", {
+    headers: getTokenHeader(getState),
+    credentials: "same-origin",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      dispatch({ type: USER_LOADED, payload: data });
+    })
+    .catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({ type: AUTH_ERROR });
+    });
+
 };
 
 const login = ({ username, password }) => dispatch => {
@@ -62,33 +86,7 @@ const login = ({ username, password }) => dispatch => {
 
       dispatch(loadUser());
     });
-};
 
-const loadUser = () => (dispatch, getState) => {
-
-  dispatch({ type: USER_LOADING });
-  fetch("http://localhost:8080/api/v1/users/profile", {
-    headers: getTokenHeader(getState),
-    credentials: "same-origin",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      dispatch({ type: USER_LOADED, payload: data });
-    })
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({ type: AUTH_ERROR });
-    });
-};
-
-const getTokenHeader = getState => {
-  const token = getState().auth.token;
-
-  const headers = { "Content-type": "application/json" };
-
-  if (token) headers["Authorization"] = "Bearer " + token;
-
-  return headers;
 };
 
 module.exports = {
