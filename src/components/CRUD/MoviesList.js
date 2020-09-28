@@ -9,50 +9,50 @@ class MoviesList extends Component {
         return (
             <React.Fragment>
                 <Link to={'/profile'} className="btn btn-dark mb-3 float-left"> Go Back <i className="fas fa-chevron-right"></i> </Link>
-                <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary float-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Movie </button>
+                <button data-toggle="modal" data-target="#exampleModal" className="btn btn-primary float-right"><i className="fa fa-plus" aria-hidden="true"></i> Add Movie </button>
                 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New Movie</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">New Movie</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <form>
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="col-form-label">Title:</label>
-                                        <input type="text" class="form-control" id="recipient-name" />
+                                    <div className="form-group">
+                                        <label for="recipient-name" className="col-form-label">Title:</label>
+                                        <input type="text" className="form-control" id="recipient-name" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Rating:</label>
-                                        <input type="text" class="form-control" id="message-text"/>
+                                    <div className="form-group">
+                                        <label for="message-text" className="col-form-label">Rating:</label>
+                                        <input type="text" className="form-control" id="message-text"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Release:</label>
-                                        <input type="text" class="form-control" id="message-text" />
+                                    <div className="form-group">
+                                        <label for="message-text" className="col-form-label">Release:</label>
+                                        <input type="text" className="form-control" id="message-text" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Genres:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
+                                    <div className="form-group">
+                                        <label for="message-text" className="col-form-label">Genres:</label>
+                                        <textarea className="form-control" id="message-text"></textarea>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Description:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
+                                    <div className="form-group">
+                                        <label for="message-text" className="col-form-label">Description:</label>
+                                        <textarea className="form-control" id="message-text"></textarea>
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Create</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary">Create</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <table class="table table-striped table-dark">
+                <table className="table table-striped table-dark">
                     <thead>
                         <tr>
                             <th scope="col">Movie ID</th>
@@ -70,8 +70,8 @@ class MoviesList extends Component {
                                 <td>{movie.release}</td>
                                 <td>{movie.uploadDate}</td>
                                 <td>
-                                    <button class="btn btn-danger mr-1"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button class="btn btn-warning mr-1"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <button className="btn btn-danger mr-1"><i className="fa fa-trash" aria-hidden="true"></i></button>
+                                    <button className="btn btn-warning mr-1"><i className="fa fa-pencil" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
                         )}

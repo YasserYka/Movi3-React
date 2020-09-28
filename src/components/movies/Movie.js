@@ -9,7 +9,7 @@ const Movie = (props) => {
         <div className="col-md-4">
             <div className="card mb-3 shadow-sm">
                 <div className="card-body">
-                <img className="card-img-top mb-3 img-fluid" src={`http://localhost:8080/${movie.posterUrl}`} width="150" alt="poster of the movie"></img> 
+                <img loading="lazy" className="card-img-top mb-3 img-fluid" src={`http://localhost:8080/${movie.posterUrl}`} width="150" alt="poster of the movie"></img> 
                     <h5 className="text-center mb-2">{movie.title}</h5>
                     <div className="d-flex justify-content-between mt-1 mb-1">
                         <p className="ml-1">

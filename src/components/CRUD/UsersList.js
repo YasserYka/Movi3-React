@@ -11,7 +11,7 @@ class UsersList extends Component {
                 <Link to={'/profile'} className="btn btn-dark mb-3">
                     Go Back <i className="fas fa-chevron-right"></i> 
                 </Link>
-                <table class="table table-striped table-dark">
+                <table className="table table-striped table-dark">
                     <thead>
                         <tr>
                             <th scope="col">User ID</th>
@@ -29,9 +29,9 @@ class UsersList extends Component {
                                 <td>{user.email}</td>
                                 <td>{user.enabled ? "Yes" : "No"}</td>
                                 <td>
-                                    <button class="btn btn-danger mr-1"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button class="btn btn-info mr-1"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn btn-warning mr-1"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                                    <button className="btn btn-danger mr-1"><i className="fa fa-trash" aria-hidden="true"></i></button>
+                                    <button className="btn btn-info mr-1"><i className="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <button className="btn btn-warning mr-1"><i className="fa fa-ban" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
                         )}
