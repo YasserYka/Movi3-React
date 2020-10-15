@@ -13,7 +13,7 @@ import { returnErrors } from "./errorAction";
 const logout = () => dispatch => {}
 
 const signup = ({ username, email, password, confirmedPassword }) => dispatch => {
-
+/*
   fetch("http://localhost:8080/api/v1/users/signup", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -42,11 +42,11 @@ const signup = ({ username, email, password, confirmedPassword }) => dispatch =>
     });
 
     dispatch({ type: REGISTER_FAIL });
-  });
+  });*/
 };
 
 const login = ({ username, password }) => dispatch => {
-
+/*
   fetch("http://localhost:8080/api/v1/users/login", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
@@ -80,7 +80,7 @@ const login = ({ username, password }) => dispatch => {
       });
 
     dispatch({ type: LOGIN_FAIL });
-  });
+  });*/
 
 };
 
