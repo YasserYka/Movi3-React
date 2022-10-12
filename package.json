@@ -12,7 +12,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "video.js": "^7.8.2"
+    "video.js": "^7.20.3"
   },
   "scripts": {
     "start": "react-scripts start",
